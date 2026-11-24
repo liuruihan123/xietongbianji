@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmzs.coedit.mapper.CoFolderMapper">
+
+    <resultMap type="com.xmzs.coedit.domain.vo.CoFolderVo" id="CoFolderResult">
+        <result property="id" column="id"/>
+        <result property="folderName" column="folder_name"/>
+        <result property="folderPath" column="folder_path"/>
+        <result property="folderLevel" column="folder_level"/>
+        <result property="folderIcon" column="folder_icon"/>
+        <result property="folderColor" column="folder_color"/>
+        <result property="workspaceId" column="workspace_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="ownerId" column="owner_id"/>
+        <result property="ownerName" column="owner_name"/>
+        <result property="folderType" column="folder_type"/>
+        <result property="isPrivate" column="is_private"/>
+        <result property="isSystem" column="is_system"/>
+        <result property="fileCount" column="file_count"/>
+        <result property="subfolderCount" column="subfolder_count"/>
+        <result property="totalSize" column="total_size"/>
+        <result property="defaultPermission" column="default_permission"/>
+        <result property="inheritPermission" column="inherit_permission"/>
+        <result property="status" column="status"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="deletedTime" column="deleted_time"/>
+        <result property="sortOrder" column="sort_order"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+</mapper>
+

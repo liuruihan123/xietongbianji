@@ -1,0 +1,301 @@
+--- # 监控中心配置
+spring.boot.admin.client:
+  # 增加客户端开关
+  enabled: false
+  url: http://localhost:9090/admin
+  instance:
+    service-host-type: IP
+  username: ruoyi
+  password: 123456
+
+--- # xxl-job 配置
+xxl.job:
+  # 执行器开关
+  enabled: false
+  # 调度中心地址：如调度中心集群部署存在多个地址则用逗号分隔。
+  admin-addresses: http://localhost:9100/xxl-job-admin
+  # 执行器通讯TOKEN：非空时启用
+  access-token: xxl-job
+  executor:
+    # 执行器AppName：执行器心跳注册分组依据；为空则关闭自动注册
+    appname: xxl-job-executor
+    # 执行器端口号 执行器从9101开始往后写
+    port: 9101
+    # 执行器注册：默认IP:PORT
+    address:
+    # 执行器IP：默认自动获取IP
+    ip:
+    # 执行器运行日志文件存储磁盘路径
+    logpath: ./logs/xxl-job
+    # 执行器日志文件保存天数：大于3生效
+    logretentiondays: 30
+
+--- # 数据源配置
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    # 动态数据源文档 https://www.kancloud.cn/tracy5546/dynamic-datasource/content
+    dynamic:
+      # 性能分析插件(有性能损耗 不建议生产环境使用)
+      p6spy: true
+      # 设置默认的数据源或者数据源组,默认值即为 master
+      primary: master
+      # 严格模式 匹配不到数据源则报错
+      strict: true
+      datasource:
+        # 主库数据源
+        master:
+          type: ${spring.datasource.type}
+          driverClassName: com.mysql.cj.jdbc.Driver
+          # jdbc 所有参数配置参考 https://lionli.blog.csdn.net/article/details/122018562
+          # rewriteBatchedStatements=true 批处理优化 大幅提升批量插入更新删除性能(对数据库有性能损耗 使用批量操作应考虑性能问题)
+          #url: jdbc:mysql://47.254.147.107:3306/co_Edit?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true
+          #username: mianshi
+          #password: RuidaoTechnology20258888!
+          url: jdbc:mysql://192.168.1.7:3306/co_edit?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true
+          username: root
+          password: 123456
+        # 从库数据源
+      #        slave:
+      #          lazy: true
+      #          type: ${spring.datasource.type}
+      #          driverClassName: com.mysql.cj.jdbc.Driver
+      #          url: jdbc:mysql://localhost:3306/co_edit?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true
+      #          username:
+      #          password:
+      #        oracle:
+      #          type: ${spring.datasource.type}
+      #          driverClassName: oracle.jdbc.OracleDriver
+      #          url: jdbc:oracle:thin:@//localhost:1521/XE
+      #          username: ROOT
+      #          password: root
+      #          hikari:
+      #            connectionTestQuery: SELECT 1 FROM DUAL
+      #        postgres:
+      #          type: ${spring.datasource.type}
+      #          driverClassName: org.postgresql.Driver
+      #          url: jdbc:postgresql://localhost:5432/postgres?useUnicode=true&characterEncoding=utf8&useSSL=true&autoReconnect=true&reWriteBatchedInserts=true
+      #          username: root
+      #          password: root
+      #        sqlserver:
+      #          type: ${spring.datasource.type}
+      #          driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      #          url: jdbc:sqlserver://localhost:1433;DatabaseName=tempdb;SelectMethod=cursor;encrypt=false;rewriteBatchedStatements=true
+      #          username: SA
+      #          password: root
+      hikari:
+        # 最大连接池数量
+        maxPoolSize: 20
+        # 最小空闲线程数量
+        minIdle: 10
+        # 配置获取连接等待超时的时间
+        connectionTimeout: 30000
+        # 校验超时时间
+        validationTimeout: 5000
+        # 空闲连接存活最大时间，默认10分钟
+        idleTimeout: 600000
+        # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认30分钟
+        maxLifetime: 1800000
+        # 连接测试query（配置检测连接是否有效）
+        connectionTestQuery: SELECT 1
+        # 多久检查一次连接的活性
+        keepaliveTime: 30000
+
+spring.data:
+  redis:
+    # 地址
+    host: 192.168.1.7
+    # 端口，默认为6379
+    port: 6379
+    # 数据库索引
+    database: 0
+    # 密码(如没有密码请注释掉)
+    password: "123456"
+    # 连接超时时间
+    timeout: 10s
+    # 是否开启ssl
+    ssl: false
+
+redisson:
+  # redis key前缀
+  keyPrefix:
+  # 线程池数量
+  threads: 4
+  # Netty线程池数量
+  nettyThreads: 8
+  # 单节点配置
+  singleServerConfig:
+    # 客户端名称
+    clientName: ${ruoyi.name}
+    # 最小空闲连接数
+    connectionMinimumIdleSize: 8
+    # 连接池大小
+    connectionPoolSize: 32
+    # 连接空闲超时，单位：毫秒
+    idleConnectionTimeout: 10000
+    # 命令等待超时，单位：毫秒
+    timeout: 3000
+    # 发布和订阅连接池大小
+    subscriptionConnectionPoolSize: 50
+    # 本地文件存储
+localfile:
+  uploadPath: /www/wwwroot/java-chat/public/uploads/ # 上传目录
+
+#支付相关基础配置
+payment:
+  returnUrl: "http://localhost/"
+  cancelUrl: "http://localhost/"
+
+
+--- # sms 短信
+sms:
+  enabled: true
+  # 阿里云 dysmsapi.aliyuncs.com
+  # 腾讯云 sms.tencentcloudapi.com
+  endpoint: "dysmsapi.aliyuncs.com"
+  accessKeyId: "LTAI5tLxxH9dnX7Kr1c"
+  accessKeySecret: "7wHntIHrxxnKzMQaUqzptMb"
+  signName: "面xx"
+  # 腾讯专用
+  sdkAppId:
+
+
+wx:
+  pay:
+    appId: wxcxxcbb
+    mchId: 168xxx
+    #V3密钥
+    apiV3Key: FXfG25ICKxx7TvYjJmSWe5y
+    certSerialNo: 37537xxxxF50274DB6FA9
+    #apiclient_key.pem证书文件的绝对路径或者以classpath:开头的类路径
+    privateKeyPath: D:\APPSoft\wxxxxclient_key.pem
+    #apiclient_cert.pem证书文件的绝对路径或者以classpath:开头的类路径
+    privateCertPath: D:\APPSoft\wxpayxxxxient_cert.pem
+
+
+# 线程池配置
+spring:
+  task:
+    execution:
+      pool:
+        core-size: 5                  # 核心线程数
+        max-size: 20                  # 最大线程数
+        queue-capacity: 100           # 队列容量
+        keep-alive: 60s               # 线程空闲时间
+      thread-name-prefix: "CryptoMonitor-"
+
+# 日志配置
+logging:
+  level:
+    com.xmzs.coEdit: INFO
+    org.springframework.web.client: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+
+# OnlyOffice协同编辑模块配置
+onlyoffice:
+
+  frontend:
+    # 前端地址
+    url:  http://192.168.1.2:9200
+
+  # OnlyOffice Document Server地址
+  document-server-url: http://192.168.1.7:9000
+
+  # OnlyOffice Document Server内部地址（可选，用于服务器间通信）
+  document-server-internal-url: http://192.168.1.7:9000
+
+  # 后端服务器地址(用于生成文档URL,必须是OnlyOffice服务器可访问的地址)
+  server-url: http://192.168.1.2:8500
+
+  # 回调地址前缀（需要配置为OnlyOffice服务器可访问的地址）
+  callback-url: http://192.168.1.2:8500/coedit/callback
+
+  # JWT配置
+  jwt-enabled: true
+  jwt-secret: QlpL7ye6EPA2P8/mzyoj6944g/mi1Rhllo73nz4U6S4=
+  jwt-header: Authorization
+
+  # 文件存储路径 -----------
+  storage-path: E:\\my_project\\coEdit\\sys_file
+
+  # 允许的最大文件大小（MB）
+  max-file-size: 200
+
+  # 支持的文档格式
+  supported-formats:
+    - doc
+    - docx
+    - docm
+    - dot
+    - dotx
+    - dotm
+    - odt
+    - fodt
+    - ott
+    - rtf
+    - txt
+    - html
+    - htm
+    - mht
+    - pdf
+    - djvu
+    - fb2
+    - epub
+    - xps
+    - xls
+    - xlsx
+    - xlsm
+    - xlt
+    - xltx
+    - xltm
+    - ods
+    - fods
+    - ots
+    - csv
+    - pps
+    - ppsx
+    - ppsm
+    - ppt
+    - pptx
+    - pptm
+    - pot
+    - potx
+    - potm
+    - odp
+    - fodp
+    - otp
+     # WPS Office 格式
+    - wps    # WPS文字
+    - et     # WPS表格
+    - ett    # WPS表格模板
+    - dps    # WPS演示
+    - dpt    # WPS演示模板
+
+  # 可编辑的文档格式
+  editable-formats:
+    - docx
+    - xlsx
+    - pptx
+    - txt
+    - csv
+
+sso:
+  validateUrl: http://34.200.2.50:8099/GXZC_JCDDDL/api/oauth/token/validate # 验证令牌
+  visitTokenUrl: http://34.200.2.50:8099/GXZC_JCPZZX/api/token/apply # 获取访问令牌
+  clientId: DZQK
+  clientSecret: 5866A3FE64DD2748EA2085B6FD3A7C4D
+  allOrgUserUrl: http://34.200.2.50:8099/GXZC_JCJGFW/api/org/allorguser # 获取所有组织用户
+  systemId: $bgyw
+license:
+  file: E:\B\license.lic
+
+# 应用ID配置（用于授权设备绑定）
+app-id:
+  file: E:\C\hzzy_office\config\app-id.properties
+
+libreoffice:
+  host: 127.0.0.1
+  port: 8100

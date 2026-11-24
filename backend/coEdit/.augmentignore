@@ -1,0 +1,44 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+# Ignore target directory (compiled files)
+target/
+
+# Ignore build directory (for Gradle projects)
+build/
+
+# Ignore IDE-specific files
+.idea/
+*.iml
+
+# Ignore log files
+*.log
+
+# # Ignore configuration files that are environment-specific
+# application-*.yml
+# application-*.properties
+
+# Ignore test files if not needed
+**/*Test.java
+**/*Tests.java
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+
+# Ignore generated files
+*.class
+*.jar
+*.war
+*.zip
+*.tar.gz
+
+# Ignore documentation or report files
+docs/
+reports/
+
+# Ignore node_modules if using Node.js for frontend
+node_modules/
+
+# Ignore package manager files
+package-lock.json
+yarn.lock

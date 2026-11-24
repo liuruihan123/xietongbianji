@@ -1,0 +1,33 @@
+-- 编辑器性能监控表
+CREATE TABLE IF NOT EXISTS `co_editor_performance` (
+    `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '监控ID',
+    `file_id` BIGINT(20) NOT NULL COMMENT '文件ID',
+    `file_name` VARCHAR(255) NOT NULL COMMENT '文件名称',
+    `session_id` VARCHAR(100) NOT NULL COMMENT '会话ID',
+    `user_id` BIGINT(20) NOT NULL COMMENT '用户ID',
+    `user_name` VARCHAR(100) NOT NULL COMMENT '用户名称',
+    `connection_duration` BIGINT(20) DEFAULT NULL COMMENT '连接时长（毫秒）',
+    `messages_sent` INT(11) NOT NULL DEFAULT 0 COMMENT '发送消息数',
+    `messages_received` INT(11) NOT NULL DEFAULT 0 COMMENT '接收消息数',
+    `average_latency` BIGINT(20) DEFAULT NULL COMMENT '平均延迟（毫秒）',
+    `max_latency` BIGINT(20) DEFAULT NULL COMMENT '最大延迟（毫秒）',
+    `min_latency` BIGINT(20) DEFAULT NULL COMMENT '最小延迟（毫秒）',
+    `error_count` INT(11) NOT NULL DEFAULT 0 COMMENT '错误次数',
+    `reconnect_count` INT(11) NOT NULL DEFAULT 0 COMMENT '重连次数',
+    `device_type` VARCHAR(50) DEFAULT NULL COMMENT '设备类型：desktop/mobile/tablet',
+    `browser_type` VARCHAR(50) DEFAULT NULL COMMENT '浏览器类型',
+    `network_type` VARCHAR(50) DEFAULT NULL COMMENT '网络类型：wifi/4g/5g/ethernet',
+    `connect_time` DATETIME NOT NULL COMMENT '连接开始时间',
+    `disconnect_time` DATETIME DEFAULT NULL COMMENT '连接结束时间',
+    `normal_disconnect` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '是否正常断开：0-异常 1-正常',
+    `create_by` BIGINT(20) DEFAULT NULL COMMENT '创建者',
+    `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by` BIGINT(20) DEFAULT NULL COMMENT '更新者',
+    `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    KEY `idx_file_id` (`file_id`),
+    KEY `idx_user_id` (`user_id`),
+    KEY `idx_session_id` (`session_id`),
+    KEY `idx_connect_time` (`connect_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='编辑器性能监控表';
+

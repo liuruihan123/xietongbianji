@@ -1,0 +1,1620 @@
+// Ant Design Vue 主题覆盖样式
+// 通过 CSS 变量和类选择器来定制 Ant Design Vue 组件样式
+
+// 主色调覆盖
+:root {
+  // Ant Design Vue 组件主色调
+  --ant-primary-color: #1e6fff;
+  --ant-primary-color-hover: #77a6f8;
+  --ant-primary-color-active: #0649bb;
+  --ant-primary-color-outline: rgba(0, 204, 97, 0.2);
+  
+  // 功能色
+  --ant-success-color: #52c41a;
+  --ant-warning-color: #faad14;
+  --ant-error-color: #ff4d4f;
+  --ant-info-color: #1677ff;
+  --white:#ffffff;
+  // 文本色
+  --ant-text-color: #000000d9;
+  --ant-text-color-secondary: #00000073;
+  --ant-text-color-disabled: #00000040;
+  --ant-text-color-fu: #869ab8;
+
+  
+  // 背景色
+  --ant-background-color-base: #ffffff;
+  --ant-background-color-light: #fafafa;
+  
+  // 边框色
+  --ant-border-color-base: #d9d9d9;
+  --ant-border-color-split: #f0f0f0;
+}
+
+// 暗色主题
+.dark {
+  --ant-text-color: #ffffffd9;
+  --ant-text-color-secondary: #ffffff73;
+  --ant-text-color-disabled: #ffffff40;
+  --ant-background-color-base: #141414;
+  --ant-background-color-light: #1f1f1f;
+  --ant-border-color-base: #424242;
+  --ant-border-color-split: #303030;
+}
+
+// 按钮组件主题
+.ant-btn-primary {
+  background-color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+  
+  &:hover,
+  &:focus {
+    background-color: var(--ant-primary-color-hover) !important;
+    border-color: var(--ant-primary-color-hover) !important;
+  }
+  
+  &:active,
+  &.ant-btn-primary:active {
+    background-color: var(--ant-primary-color-active) !important;
+    border-color: var(--ant-primary-color-active) !important;
+  }
+}
+
+// 链接按钮
+.ant-btn-link {
+  color: var(--ant-primary-color) !important;
+  
+  &:hover,
+  &:focus {
+    color: var(--ant-primary-color-hover) !important;
+  }
+  
+  &:active {
+    color: var(--ant-primary-color-active) !important;
+  }
+}
+
+// 输入框焦点色
+.ant-input:focus,
+.ant-input-focused {
+  border-color: var(--ant-primary-color-hover) !important;
+  box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+}
+
+// 选择器
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: var(--ant-primary-color-hover) !important;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border-color: var(--ant-primary-color-hover) !important;
+  box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+}
+
+// 复选框
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(--ant-primary-color) !important;
+  border-color: var(--ant-primary-color) !important;
+}
+
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: var(--ant-primary-color) !important;
+}
+
+// 单选框
+.ant-radio-checked .ant-radio-inner {
+  border-color: var(--ant-primary-color) !important;
+}
+
+.ant-radio-checked .ant-radio-inner::after {
+  background-color: var(--ant-primary-color) !important;
+}
+
+.ant-radio:hover .ant-radio-inner,
+.ant-radio-input:focus + .ant-radio-inner {
+  border-color: var(--ant-primary-color) !important;
+}
+
+// 开关
+.ant-switch-checked {
+  background-color: var(--ant-primary-color) !important;
+}
+
+// 滑块
+.ant-slider-track {
+  background-color: var(--ant-primary-color) !important;
+}
+
+.ant-slider-handle {
+  border-color: var(--ant-primary-color) !important;
+}
+
+.ant-slider:hover .ant-slider-track {
+  background-color: var(--ant-primary-color-hover) !important;
+}
+
+// 进度条
+.ant-progress-bg {
+  background-color: var(--ant-primary-color) !important;
+}
+
+// 标签页
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--ant-primary-color) !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: var(--ant-primary-color) !important;
+}
+
+// 菜单
+.ant-menu-item-selected {
+  color: var(--ant-primary-color) !important;
+}
+
+.ant-menu-item-selected::after {
+  border-right-color: var(--ant-primary-color) !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected::after {
+  border-bottom-color: var(--ant-primary-color) !important;
+}
+
+// 分页
+.ant-pagination-item-active {
+  border-color: var(--ant-primary-color) !important;
+}
+
+.ant-pagination-item-active a {
+  color: var(--ant-primary-color) !important;
+}
+
+// 步骤条增强
+.ant-steps {
+  .ant-steps-item {
+    // 完成状态
+    &.ant-steps-item-finish {
+      .ant-steps-item-icon {
+        background-color: var(--ant-primary-color) !important;
+        border-color: var(--ant-primary-color) !important;
+        color: #fff !important;
+      }
+
+      .ant-steps-item-title {
+        color: var(--ant-primary-color) !important;
+        font-weight: 600 !important;
+      }
+
+      .ant-steps-item-description {
+        color: var(--ant-text-color-secondary) !important;
+      }
+
+      // 连接线
+      .ant-steps-item-tail::after {
+        background-color: var(--ant-primary-color) !important;
+      }
+    }
+
+    // 进行中状态
+    &.ant-steps-item-process {
+      .ant-steps-item-icon {
+        background-color: var(--ant-primary-color) !important;
+        border-color: var(--ant-primary-color) !important;
+        color: #fff !important;
+
+        // 添加脉冲动画
+        &::after {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          border-radius: 50%;
+          border: 2px solid var(--ant-primary-color);
+          opacity: 0.3;
+          animation: ant-steps-pulse 1.5s infinite;
+        }
+      }
+
+      .ant-steps-item-title {
+        color: var(--ant-primary-color) !important;
+        font-weight: 600 !important;
+      }
+
+      .ant-steps-item-description {
+        color: var(--ant-text-color) !important;
+      }
+    }
+
+    // 等待状态
+    &.ant-steps-item-wait {
+      .ant-steps-item-icon {
+        background-color: var(--ant-background-color-base) !important;
+        border-color: var(--ant-border-color-base) !important;
+        color: var(--ant-text-color-disabled) !important;
+      }
+
+      .ant-steps-item-title {
+        color: var(--ant-text-color-disabled) !important;
+      }
+
+      .ant-steps-item-description {
+        color: var(--ant-text-color-disabled) !important;
+      }
+    }
+
+    // 错误状态
+    &.ant-steps-item-error {
+      .ant-steps-item-icon {
+        background-color: var(--ant-error-color) !important;
+        border-color: var(--ant-error-color) !important;
+        color: #fff !important;
+      }
+
+      .ant-steps-item-title {
+        color: var(--ant-error-color) !important;
+      }
+
+      .ant-steps-item-description {
+        color: var(--ant-error-color) !important;
+      }
+    }
+
+    // 图标容器
+    .ant-steps-item-icon {
+      position: relative;
+      transition: all 0.3s ease !important;
+    }
+
+    // 标题和描述
+    .ant-steps-item-title {
+      transition: all 0.3s ease !important;
+    }
+
+    .ant-steps-item-description {
+      transition: all 0.3s ease !important;
+    }
+  }
+
+  // 小尺寸步骤条
+  &.ant-steps-small {
+    .ant-steps-item-icon {
+      width: 24px !important;
+      height: 24px !important;
+      line-height: 22px !important;
+      font-size: 12px !important;
+    }
+  }
+
+  // 垂直步骤条
+  &.ant-steps-vertical {
+    .ant-steps-item-tail {
+      left: 16px !important;
+
+      &::after {
+        width: 1px !important;
+        height: 100% !important;
+      }
+    }
+  }
+}
+
+// 步骤条动画
+@keyframes ant-steps-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+// 时间选择器
+.ant-picker:hover,
+.ant-picker-focused {
+  border-color: var(--ant-primary-color-hover) !important;
+  box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+}
+
+// 上传组件
+.ant-upload.ant-upload-select-picture-card:hover {
+  border-color: var(--ant-primary-color) !important;
+}
+
+// 评分组件
+.ant-rate-star-full .ant-rate-star-second {
+  color: var(--ant-primary-color) !important;
+}
+
+// 锚点
+.ant-anchor-link-title-active,
+.ant-anchor-link-active > .ant-anchor-link-title {
+  color: var(--ant-primary-color) !important;
+}
+
+// 回到顶部
+.ant-back-top {
+  background-color: var(--ant-primary-color) !important;
+}
+
+// 徽标
+.ant-badge-count {
+  background-color: var(--ant-error-color) !important;
+}
+
+// 日历
+.ant-picker-calendar-date-today {
+  border-color: var(--ant-primary-color) !important;
+}
+
+// 抽屉
+.ant-drawer-header {
+  border-bottom-color: var(--ant-border-color-split) !important;
+}
+
+// 表格
+.ant-table-tbody > tr.ant-table-row-selected > td {
+  background-color: rgba(0, 204, 97, 0.04) !important;
+}
+
+// 树形控件
+.ant-tree .ant-tree-node-selected {
+  background-color: rgba(0, 204, 97, 0.1) !important;
+}
+
+// 穿梭框
+.ant-transfer-list-header-selected {
+  background-color: rgba(0, 204, 97, 0.1) !important;
+}
+
+// 级联选择
+.ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled) {
+  background-color: rgba(0, 204, 97, 0.1) !important;
+}
+
+// 时间轴
+.ant-timeline-item-head-blue {
+  border-color: var(--ant-primary-color) !important;
+  // background-color: var(--ant-primary-color) !important;
+}
+
+// ==================== 扩展组件样式覆盖 ====================
+
+// 标签 (Tag) 组件
+.ant-tag {
+  border-color: var(--ant-border-color-base) !important;
+
+  &.ant-tag-blue {
+    background-color: rgba(0, 204, 97, 0.1) !important;
+    border-color: var(--ant-primary-color) !important;
+    color: var(--ant-primary-color) !important;
+  }
+
+  &.ant-tag-green {
+    background-color: rgba(82, 196, 26, 0.1) !important;
+    border-color: var(--ant-success-color) !important;
+    color: var(--ant-success-color) !important;
+  }
+
+  &.ant-tag-orange {
+    background-color: rgba(250, 173, 20, 0.1) !important;
+    border-color: var(--ant-warning-color) !important;
+    color: var(--ant-warning-color) !important;
+  }
+
+  &.ant-tag-red {
+    background-color: rgba(255, 77, 79, 0.1) !important;
+    border-color: var(--ant-error-color) !important;
+    color: var(--ant-error-color) !important;
+  }
+
+  // 处理中标签 (processing)
+  &.ant-tag-processing {
+    background-color: rgba(0, 204, 97, 0.1) !important;
+    border-color: var(--ant-primary-color) !important;
+    color: var(--ant-primary-color) !important;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--ant-primary-color);
+      margin-right: 6px;
+      animation: ant-tag-processing-pulse 1.5s infinite;
+    }
+  }
+
+  // 进行中标签 (in-progress)
+  &.ant-tag-in-progress {
+    background-color: rgba(0, 204, 97, 0.1) !important;
+    border-color: var(--ant-primary-color) !important;
+    color: var(--ant-primary-color) !important;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      border: 2px solid var(--ant-primary-color);
+      border-top-color: transparent;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      animation: ant-tag-spin 1s linear infinite;
+    }
+  }
+
+  // 可关闭标签
+  .ant-tag-close-icon {
+    color: inherit !important;
+
+    &:hover {
+      color: var(--ant-text-color) !important;
+    }
+  }
+
+  // 可选择标签
+  &.ant-tag-checkable {
+    background-color: transparent !important;
+    border-color: var(--ant-border-color-base) !important;
+
+    &:hover {
+      color: var(--ant-primary-color) !important;
+    }
+
+    &.ant-tag-checkable-checked {
+      background-color: var(--ant-primary-color) !important;
+      border-color: var(--ant-primary-color) !important;
+      color: #fff !important;
+    }
+  }
+}
+
+// 标签动画
+@keyframes ant-tag-processing-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes ant-tag-spin {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+// 表单组件增强
+.ant-form {
+  // 表单项标签
+  .ant-form-item-label > label {
+    color: var(--ant-text-color) !important;
+
+    &.ant-form-item-required::before {
+      color: var(--ant-error-color) !important;
+    }
+  }
+
+  // 表单验证状态
+  .ant-form-item-has-error {
+    .ant-input,
+    .ant-input-affix-wrapper,
+    .ant-select-selector,
+    .ant-picker,
+    .ant-cascader-picker {
+      border-color: var(--ant-error-color) !important;
+
+      &:hover,
+      &:focus {
+        border-color: var(--ant-error-color) !important;
+        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2) !important;
+      }
+    }
+  }
+
+  .ant-form-item-has-warning {
+    .ant-input,
+    .ant-input-affix-wrapper,
+    .ant-select-selector,
+    .ant-picker,
+    .ant-cascader-picker {
+      border-color: var(--ant-warning-color) !important;
+
+      &:hover,
+      &:focus {
+        border-color: var(--ant-warning-color) !important;
+        box-shadow: 0 0 0 2px rgba(250, 173, 20, 0.2) !important;
+      }
+    }
+  }
+
+  .ant-form-item-has-success {
+    .ant-input,
+    .ant-input-affix-wrapper,
+    .ant-select-selector,
+    .ant-picker,
+    .ant-cascader-picker {
+      border-color: var(--ant-success-color) !important;
+
+      &:hover,
+      &:focus {
+        border-color: var(--ant-success-color) !important;
+        box-shadow: 0 0 0 2px rgba(82, 196, 26, 0.2) !important;
+      }
+    }
+  }
+}
+
+// 输入框组件增强
+.ant-input-affix-wrapper {
+  border-color: var(--ant-border-color-base) !important;
+
+  &:hover {
+    border-color: var(--ant-primary-color-hover) !important;
+  }
+
+  &.ant-input-affix-wrapper-focused {
+    border-color: var(--ant-primary-color-hover) !important;
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+  }
+
+  // 输入框前缀后缀图标
+  .ant-input-prefix,
+  .ant-input-suffix {
+    color: var(--ant-text-color-secondary) !important;
+  }
+}
+
+// 文本域
+.ant-input {
+  border-color: var(--ant-border-color-base) !important;
+  color: var(--ant-text-color) !important;
+  background-color: var(--ant-background-color-base) !important;
+
+  &::placeholder {
+    color: var(--ant-text-color-disabled) !important;
+  }
+
+  &:hover {
+    border-color: var(--ant-primary-color-hover) !important;
+  }
+}
+
+// 数字输入框
+.ant-input-number {
+  border-color: var(--ant-border-color-base) !important;
+
+  &:hover {
+    border-color: var(--ant-primary-color-hover) !important;
+  }
+
+  &.ant-input-number-focused {
+    border-color: var(--ant-primary-color-hover) !important;
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+  }
+
+  .ant-input-number-handler {
+    border-color: var(--ant-border-color-base) !important;
+
+    &:hover {
+      color: var(--ant-primary-color) !important;
+    }
+  }
+}
+
+// 搜索框
+.ant-input-search {
+  .ant-input-search-button {
+    background-color: var(--ant-primary-color) !important;
+    border-color: var(--ant-primary-color) !important;
+
+    &:hover {
+      background-color: var(--ant-primary-color-hover) !important;
+      border-color: var(--ant-primary-color-hover) !important;
+    }
+  }
+}
+
+// 选择器增强
+.ant-select {
+  .ant-select-selector {
+    border-color: var(--ant-border-color-base) !important;
+
+    .ant-select-selection-placeholder {
+      color: var(--ant-text-color-disabled) !important;
+    }
+  }
+
+  &.ant-select-open .ant-select-selector {
+    border-color: var(--ant-primary-color-hover) !important;
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+  }
+
+  // 多选模式
+  &.ant-select-multiple {
+    .ant-select-selection-item {
+      background-color: rgba(0, 204, 97, 0.1) !important;
+      border-color: var(--ant-primary-color) !important;
+      color: var(--ant-primary-color) !important;
+
+      .ant-select-selection-item-remove {
+        color: var(--ant-primary-color) !important;
+
+        &:hover {
+          color: var(--ant-primary-color-hover) !important;
+        }
+      }
+    }
+  }
+}
+
+// 下拉菜单
+.ant-select-dropdown {
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background-color: rgba(0, 204, 97, 0.1) !important;
+    color: var(--ant-primary-color) !important;
+  }
+
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    background-color: rgba(0, 204, 97, 0.05) !important;
+  }
+}
+
+// 级联选择器
+.ant-cascader-picker {
+  border-color: var(--ant-border-color-base) !important;
+
+  &:hover {
+    border-color: var(--ant-primary-color-hover) !important;
+  }
+
+  &.ant-cascader-picker-focused {
+    border-color: var(--ant-primary-color-hover) !important;
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+  }
+}
+
+// 树选择器
+.ant-tree-select {
+  .ant-select-selector {
+    border-color: var(--ant-border-color-base) !important;
+  }
+
+  &.ant-select-focused .ant-select-selector {
+    border-color: var(--ant-primary-color-hover) !important;
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+  }
+}
+
+// 自动完成
+.ant-auto-complete {
+  .ant-select-selector {
+    border-color: var(--ant-border-color-base) !important;
+  }
+
+  &.ant-select-focused .ant-select-selector {
+    border-color: var(--ant-primary-color-hover) !important;
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+  }
+}
+
+// 提及组件
+.ant-mentions {
+  border-color: var(--ant-border-color-base) !important;
+
+  &:hover {
+    border-color: var(--ant-primary-color-hover) !important;
+  }
+
+  &.ant-mentions-focused {
+    border-color: var(--ant-primary-color-hover) !important;
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+  }
+}
+
+// 日期时间选择器增强
+.ant-picker {
+  border-color: var(--ant-border-color-base) !important;
+
+  &:hover {
+    border-color: var(--ant-primary-color-hover) !important;
+  }
+
+  &.ant-picker-focused {
+    border-color: var(--ant-primary-color-hover) !important;
+    box-shadow: 0 0 0 2px var(--ant-primary-color-outline) !important;
+  }
+
+  .ant-picker-suffix {
+    color: var(--ant-text-color-secondary) !important;
+  }
+}
+
+// 日期选择器面板
+.ant-picker-dropdown {
+  .ant-picker-today-btn {
+    color: var(--ant-primary-color) !important;
+
+    &:hover {
+      color: var(--ant-primary-color-hover) !important;
+    }
+  }
+
+  .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+    border-color: var(--ant-primary-color) !important;
+  }
+
+  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+    background-color: var(--ant-primary-color) !important;
+  }
+
+  .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+  .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+    background-color: var(--ant-primary-color) !important;
+  }
+
+  .ant-picker-cell-in-view.ant-picker-cell-in-range .ant-picker-cell-inner {
+    background-color: rgba(0, 204, 97, 0.1) !important;
+  }
+}
+
+// 时间选择器
+.ant-picker-time-panel {
+  .ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+    background-color: rgba(0, 204, 97, 0.1) !important;
+    color: var(--ant-primary-color) !important;
+  }
+}
+
+// ==================== 导航组件样式覆盖 ====================
+
+// 面包屑
+.ant-breadcrumb {
+  .ant-breadcrumb-link {
+    color: var(--ant-text-color-secondary) !important;
+
+    &:hover {
+      color: var(--ant-primary-color) !important;
+    }
+  }
+
+  .ant-breadcrumb-separator {
+    color: var(--ant-text-color-disabled) !important;
+  }
+}
+
+// 下拉菜单
+.ant-dropdown-menu {
+  background-color: var(--ant-background-color-base) !important;
+  border: 1px solid var(--ant-border-color-base) !important;
+
+  .ant-dropdown-menu-item {
+    color: var(--ant-text-color) !important;
+
+    &:hover {
+      background-color: rgba(0, 204, 97, 0.05) !important;
+      color: var(--ant-primary-color) !important;
+    }
+
+    &.ant-dropdown-menu-item-selected {
+      background-color: rgba(0, 204, 97, 0.1) !important;
+      color: var(--ant-primary-color) !important;
+    }
+  }
+
+  .ant-dropdown-menu-item-divider {
+    background-color: var(--ant-border-color-split) !important;
+  }
+}
+
+// 菜单增强
+.ant-menu {
+  background-color: var(--ant-background-color-base) !important;
+  border-color: var(--ant-border-color-base) !important;
+
+  .ant-menu-item {
+    color: var(--ant-text-color) !important;
+
+    &:hover {
+      color: var(--ant-primary-color) !important;
+      background-color: rgba(0, 204, 97, 0.05) !important;
+    }
+
+    &.ant-menu-item-selected {
+      background-color: rgba(0, 204, 97, 0.1) !important;
+      color: var(--ant-primary-color) !important;
+    }
+  }
+
+  .ant-menu-submenu-title {
+    color: var(--ant-text-color) !important;
+
+    &:hover {
+      color: var(--ant-primary-color) !important;
+      background-color: rgba(0, 204, 97, 0.05) !important;
+    }
+  }
+
+  .ant-menu-item-group-title {
+    color: var(--ant-text-color-secondary) !important;
+  }
+
+  // 垂直菜单
+  &.ant-menu-vertical {
+    .ant-menu-item-selected::after {
+      border-right-color: var(--ant-primary-color) !important;
+    }
+  }
+
+  // 水平菜单
+  &.ant-menu-horizontal {
+    .ant-menu-item-selected::after {
+      border-bottom-color: var(--ant-primary-color) !important;
+    }
+  }
+
+  // 暗色菜单
+  &.ant-menu-dark {
+    background-color: var(--ant-background-color-light) !important;
+
+    .ant-menu-item {
+      color: var(--ant-text-color) !important;
+
+      &:hover {
+        color: var(--ant-primary-color) !important;
+        background-color: rgba(0, 204, 97, 0.1) !important;
+      }
+
+      &.ant-menu-item-selected {
+        background-color: var(--ant-primary-color) !important;
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+// ==================== 数据展示组件样式覆盖 ====================
+
+// 头像
+.ant-avatar {
+  background-color: var(--ant-primary-color) !important;
+  color: #fff !important;
+}
+
+// 徽标增强
+.ant-badge {
+  .ant-badge-count {
+    background-color: var(--ant-error-color) !important;
+    color: #fff !important;
+  }
+
+  .ant-badge-dot {
+    background-color: var(--ant-error-color) !important;
+  }
+
+  &.ant-badge-status {
+    .ant-badge-status-success {
+      background-color: var(--ant-success-color) !important;
+    }
+
+    .ant-badge-status-processing {
+      background-color: var(--ant-primary-color) !important;
+    }
+
+    .ant-badge-status-warning {
+      background-color: var(--ant-warning-color) !important;
+    }
+
+    .ant-badge-status-error {
+      background-color: var(--ant-error-color) !important;
+    }
+  }
+}
+
+// 日历
+.ant-picker-calendar {
+  .ant-picker-calendar-date-today {
+    border-color: var(--ant-primary-color) !important;
+  }
+
+  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-calendar-date {
+    background-color: var(--ant-primary-color) !important;
+    color: #fff !important;
+  }
+}
+
+// 卡片
+.ant-card {
+  background-color: var(--ant-background-color-base) !important;
+  border-color: var(--ant-border-color-base) !important;
+
+  .ant-card-head {
+    border-bottom-color: var(--ant-border-color-split) !important;
+    background-color: var(--ant-background-color-light) !important;
+
+    .ant-card-head-title {
+      color: var(--ant-text-color) !important;
+    }
+  }
+
+  .ant-card-extra {
+    color: var(--ant-text-color-secondary) !important;
+  }
+
+  .ant-card-actions {
+    border-top-color: var(--ant-border-color-split) !important;
+    background-color: var(--ant-background-color-light) !important;
+
+    > li {
+      border-right-color: var(--ant-border-color-split) !important;
+
+      > span {
+        color: var(--ant-text-color-secondary) !important;
+
+        &:hover {
+          color: var(--ant-primary-color) !important;
+        }
+      }
+    }
+  }
+}
+
+// 轮播图
+.ant-carousel {
+  .slick-dots {
+    li {
+      button {
+        background-color: var(--ant-text-color-disabled) !important;
+      }
+
+      &.slick-active button {
+        background-color: var(--ant-primary-color) !important;
+      }
+    }
+  }
+}
+
+// 折叠面板
+.ant-collapse {
+  background-color: var(--ant-background-color-base) !important;
+  border-color: var(--ant-border-color-base) !important;
+
+  .ant-collapse-item {
+    border-bottom-color: var(--ant-border-color-split) !important;
+
+    .ant-collapse-header {
+      color: var(--ant-text-color) !important;
+      background-color: var(--ant-background-color-light) !important;
+
+      &:hover {
+        color: var(--ant-primary-color) !important;
+      }
+    }
+
+    .ant-collapse-content {
+      background-color: var(--ant-background-color-base) !important;
+      border-top-color: var(--ant-border-color-split) !important;
+    }
+  }
+
+  .ant-collapse-item-active {
+    .ant-collapse-header {
+      color: var(--ant-primary-color) !important;
+    }
+  }
+}
+
+// ==================== 反馈组件样式覆盖 ====================
+
+// 警告提示增强
+.ant-alert {
+  border-radius: 6px !important;
+
+  &.ant-alert-success {
+    background-color: rgba(82, 196, 26, 0.1) !important;
+    border-color: var(--ant-success-color) !important;
+
+    .ant-alert-icon {
+      color: var(--ant-success-color) !important;
+    }
+  }
+
+  &.ant-alert-info {
+    background-color: rgba(22, 119, 255, 0.1) !important;
+    border-color: var(--ant-info-color) !important;
+
+    .ant-alert-icon {
+      color: var(--ant-info-color) !important;
+    }
+  }
+
+  &.ant-alert-warning {
+    background-color: rgba(250, 173, 20, 0.1) !important;
+    border-color: var(--ant-warning-color) !important;
+
+    .ant-alert-icon {
+      color: var(--ant-warning-color) !important;
+    }
+  }
+
+  &.ant-alert-error {
+    background-color: rgba(255, 77, 79, 0.1) !important;
+    border-color: var(--ant-error-color) !important;
+
+    .ant-alert-icon {
+      color: var(--ant-error-color) !important;
+    }
+  }
+}
+
+// 抽屉增强
+.ant-drawer {
+  .ant-drawer-header {
+    background-color: var(--ant-background-color-light) !important;
+    border-bottom-color: var(--ant-border-color-split) !important;
+
+    .ant-drawer-title {
+      color: var(--ant-text-color) !important;
+    }
+  }
+
+  .ant-drawer-body {
+    background-color: var(--ant-background-color-base) !important;
+  }
+
+  .ant-drawer-close {
+    color: var(--ant-text-color-secondary) !important;
+
+    &:hover {
+      color: var(--ant-text-color) !important;
+    }
+  }
+}
+
+// 消息提示
+.ant-message {
+  .ant-message-notice-content {
+    background-color: var(--ant-background-color-base) !important;
+    border: 1px solid var(--ant-border-color-base) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+
+    .ant-message-success .anticon {
+      color: var(--ant-success-color) !important;
+    }
+
+    .ant-message-error .anticon {
+      color: var(--ant-error-color) !important;
+    }
+
+    .ant-message-warning .anticon {
+      color: var(--ant-warning-color) !important;
+    }
+
+    .ant-message-info .anticon {
+      color: var(--ant-info-color) !important;
+    }
+  }
+}
+
+// 通知提醒框
+.ant-notification {
+  .ant-notification-notice {
+    background-color: var(--ant-background-color-base) !important;
+    border: 1px solid var(--ant-border-color-base) !important;
+
+    .ant-notification-notice-icon {
+      &.ant-notification-notice-icon-success .anticon {
+        color: var(--ant-success-color) !important;
+      }
+
+      &.ant-notification-notice-icon-error .anticon {
+        color: var(--ant-error-color) !important;
+      }
+
+      &.ant-notification-notice-icon-warning .anticon {
+        color: var(--ant-warning-color) !important;
+      }
+
+      &.ant-notification-notice-icon-info .anticon {
+        color: var(--ant-info-color) !important;
+      }
+    }
+  }
+}
+
+// 对话框增强
+.ant-modal {
+  .ant-modal-content {
+    background-color: var(--ant-background-color-base) !important;
+  }
+
+  .ant-modal-header {
+    background-color: var(--ant-background-color-light) !important;
+    border-bottom-color: var(--ant-border-color-split) !important;
+
+    .ant-modal-title {
+      color: var(--ant-text-color) !important;
+    }
+  }
+
+  .ant-modal-close {
+    color: var(--ant-text-color-secondary) !important;
+
+    &:hover {
+      color: var(--ant-text-color) !important;
+    }
+  }
+
+  .ant-modal-footer {
+    border-top-color: var(--ant-border-color-split) !important;
+    background-color: var(--ant-background-color-light) !important;
+  }
+}
+
+// 气泡确认框
+.ant-popconfirm {
+  .ant-popover-inner {
+    background-color: var(--ant-background-color-base) !important;
+  }
+
+  .ant-popover-arrow::before {
+    background-color: var(--ant-background-color-base) !important;
+    border-color: var(--ant-border-color-base) !important;
+  }
+}
+
+// 气泡卡片
+.ant-popover {
+  .ant-popover-inner {
+    background-color: var(--ant-background-color-base) !important;
+    border: 1px solid var(--ant-border-color-base) !important;
+  }
+
+  .ant-popover-title {
+    border-bottom-color: var(--ant-border-color-split) !important;
+    color: var(--ant-text-color) !important;
+  }
+
+  .ant-popover-inner-content {
+    color: var(--ant-text-color) !important;
+  }
+
+  .ant-popover-arrow::before {
+    background-color: var(--ant-background-color-base) !important;
+    border-color: var(--ant-border-color-base) !important;
+  }
+}
+
+// 进度条增强
+.ant-progress {
+  .ant-progress-bg {
+    background-color: var(--ant-primary-color) !important;
+  }
+
+  .ant-progress-success-bg {
+    background-color: var(--ant-success-color) !important;
+  }
+
+  &.ant-progress-status-exception .ant-progress-bg {
+    background-color: var(--ant-error-color) !important;
+  }
+
+  .ant-progress-text {
+    color: var(--ant-text-color) !important;
+  }
+
+  // 圆形进度条
+  &.ant-progress-circle {
+    .ant-progress-text {
+      color: var(--ant-text-color) !important;
+    }
+  }
+}
+
+// 骨架屏
+.ant-skeleton {
+  .ant-skeleton-content {
+    .ant-skeleton-title,
+    .ant-skeleton-paragraph > li {
+      background: linear-gradient(90deg,
+        var(--ant-background-color-light) 25%,
+        rgba(0, 0, 0, 0.05) 37%,
+        var(--ant-background-color-light) 63%) !important;
+    }
+  }
+
+  .ant-skeleton-avatar {
+    background: linear-gradient(90deg,
+      var(--ant-background-color-light) 25%,
+      rgba(0, 0, 0, 0.05) 37%,
+      var(--ant-background-color-light) 63%) !important;
+  }
+}
+
+// 加载中
+.ant-spin {
+  .ant-spin-dot {
+    .ant-spin-dot-item {
+      background-color: var(--ant-primary-color) !important;
+    }
+  }
+
+  .ant-spin-text {
+    color: var(--ant-text-color-secondary) !important;
+  }
+}
+
+// ==================== 其他组件样式覆盖 ====================
+
+// 固钉
+.ant-affix {
+  .ant-btn {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+// 锚点
+.ant-anchor {
+  .ant-anchor-ink {
+    &::before {
+      background-color: var(--ant-border-color-split) !important;
+    }
+
+    .ant-anchor-ink-ball {
+      background-color: var(--ant-primary-color) !important;
+      border-color: var(--ant-primary-color) !important;
+    }
+  }
+
+  .ant-anchor-link {
+    .ant-anchor-link-title {
+      color: var(--ant-text-color) !important;
+
+      &:hover {
+        color: var(--ant-primary-color) !important;
+      }
+    }
+
+    &.ant-anchor-link-active > .ant-anchor-link-title {
+      color: var(--ant-primary-color) !important;
+    }
+  }
+}
+
+// 回到顶部
+.ant-back-top {
+  background-color: var(--ant-text-color-secondary) !important;
+  color: var(--ant-background-color-base) !important;
+
+  &:hover {
+    background-color: var(--ant-primary-color) !important;
+  }
+}
+
+// 分割线
+.ant-divider {
+  border-color: var(--ant-border-color-split) !important;
+
+  &.ant-divider-with-text {
+    color: var(--ant-text-color) !important;
+
+    &::before,
+    &::after {
+      border-top-color: var(--ant-border-color-split) !important;
+    }
+  }
+}
+
+// 空状态
+.ant-empty {
+  .ant-empty-description {
+    color: var(--ant-text-color-disabled) !important;
+  }
+}
+
+// 图片
+.ant-image {
+  .ant-image-mask {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+
+    .ant-image-mask-info {
+      .anticon {
+        color: #fff !important;
+      }
+    }
+  }
+}
+
+// 列表
+.ant-list {
+  .ant-list-item {
+    border-bottom-color: var(--ant-border-color-split) !important;
+
+    .ant-list-item-meta {
+      .ant-list-item-meta-title {
+        color: var(--ant-text-color) !important;
+
+        > a {
+          color: var(--ant-text-color) !important;
+
+          &:hover {
+            color: var(--ant-primary-color) !important;
+          }
+        }
+      }
+
+      .ant-list-item-meta-description {
+        color: var(--ant-text-color-secondary) !important;
+      }
+    }
+  }
+
+  .ant-list-pagination {
+    text-align: center !important;
+    margin-top: 24px !important;
+  }
+}
+
+// 统计数值
+.ant-statistic {
+  .ant-statistic-title {
+    color: var(--ant-text-color-secondary) !important;
+  }
+
+  .ant-statistic-content {
+    color: var(--ant-text-color) !important;
+
+    .ant-statistic-content-value {
+      color: var(--ant-text-color) !important;
+    }
+  }
+}
+
+// 工具提示
+.ant-tooltip {
+  .ant-tooltip-inner {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+    color: #fff !important;
+  }
+
+  .ant-tooltip-arrow::before {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+  }
+}
+
+// 树形控件增强
+.ant-tree {
+  background-color: var(--ant-background-color-base) !important;
+
+  .ant-tree-node-content-wrapper {
+    color: var(--ant-text-color) !important;
+
+    &:hover {
+      background-color: rgba(0, 204, 97, 0.05) !important;
+    }
+
+    &.ant-tree-node-selected {
+      background-color: rgba(0, 204, 97, 0.1) !important;
+      color: var(--ant-primary-color) !important;
+    }
+  }
+
+  .ant-tree-switcher {
+    color: var(--ant-text-color-secondary) !important;
+
+    &:hover {
+      color: var(--ant-primary-color) !important;
+    }
+  }
+
+  .ant-tree-checkbox {
+    .ant-tree-checkbox-inner {
+      border-color: var(--ant-border-color-base) !important;
+    }
+
+    &.ant-tree-checkbox-checked .ant-tree-checkbox-inner {
+      background-color: var(--ant-primary-color) !important;
+      border-color: var(--ant-primary-color) !important;
+    }
+  }
+}
+
+// 上传组件增强
+.ant-upload {
+  &.ant-upload-drag {
+    background-color: var(--ant-background-color-light) !important;
+    border-color: var(--ant-border-color-base) !important;
+
+    &:hover {
+      border-color: var(--ant-primary-color) !important;
+    }
+
+    &.ant-upload-drag-hover {
+      border-color: var(--ant-primary-color-hover) !important;
+      background-color: rgba(0, 204, 97, 0.02) !important;
+    }
+  }
+
+  .ant-upload-list {
+    .ant-upload-list-item {
+      border-color: var(--ant-border-color-base) !important;
+      background-color: var(--ant-background-color-base) !important;
+
+      .ant-upload-list-item-name {
+        color: var(--ant-text-color) !important;
+      }
+
+      .ant-upload-list-item-error {
+        border-color: var(--ant-error-color) !important;
+        background-color: rgba(255, 77, 79, 0.05) !important;
+      }
+    }
+  }
+}
+
+// ==================== 暗色主题特殊处理 ====================
+
+.dark {
+  // 重写暗色主题下的特殊样式
+  .ant-btn-primary {
+    background-color: var(--ant-primary-color) !important;
+    border-color: var(--ant-primary-color) !important;
+
+    &:hover,
+    &:focus {
+      background-color: var(--ant-primary-color-hover) !important;
+      border-color: var(--ant-primary-color-hover) !important;
+    }
+  }
+
+  .ant-input,
+  .ant-input-affix-wrapper,
+  .ant-select-selector,
+  .ant-picker {
+    background-color: var(--ant-background-color-base) !important;
+    border-color: var(--ant-border-color-base) !important;
+    color: var(--ant-text-color) !important;
+  }
+
+  .ant-card {
+    background-color: var(--ant-background-color-base) !important;
+    border-color: var(--ant-border-color-base) !important;
+
+    .ant-card-head {
+      background-color: var(--ant-background-color-light) !important;
+      border-bottom-color: var(--ant-border-color-split) !important;
+    }
+  }
+
+  .ant-table {
+    background-color: var(--ant-background-color-base) !important;
+
+    .ant-table-thead > tr > th {
+      background-color: var(--ant-background-color-light) !important;
+      border-bottom-color: var(--ant-border-color-split) !important;
+      color: #040404 !important;
+    }
+
+    .ant-table-tbody > tr > td {
+      border-bottom-color: var(--ant-border-color-split) !important;
+      color: #040404 !important;
+    }
+  }
+}
+
+// ==================== 响应式调整 ====================
+
+@media (max-width: 768px) {
+  // 移动端特殊样式调整
+  .ant-card {
+    margin-bottom: 16px !important;
+  }
+
+  .ant-form-item {
+    margin-bottom: 16px !important;
+  }
+.ant-btn > span {
+    color: #eee;
+}
+  .ant-btn {
+    height: 40px !important;
+    padding: 0 16px !important;
+  }
+
+  .ant-input,
+  .ant-input-affix-wrapper {
+    height: 40px !important;
+  }
+
+  .ant-select-selector {
+    height: 40px !important;
+  }
+}
+
+// ==================== 自定义工具类 ====================
+
+// 主题色工具类
+.text-primary {
+  color: var(--ant-primary-color) !important;
+}
+
+.text-success {
+  color: var(--ant-success-color) !important;
+}
+
+.text-warning {
+  color: var(--ant-warning-color) !important;
+}
+
+.text-error {
+  color: var(--ant-error-color) !important;
+}
+
+.text-info {
+  color: var(--ant-info-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--ant-primary-color) !important;
+  color: #fff !important;
+}
+
+.bg-success {
+  background-color: var(--ant-success-color) !important;
+  color: #fff !important;
+}
+
+.bg-warning {
+  background-color: var(--ant-warning-color) !important;
+  color: #fff !important;
+}
+
+.bg-error {
+  background-color: var(--ant-error-color) !important;
+  color: #fff !important;
+}
+
+.bg-info {
+  background-color: var(--ant-info-color) !important;
+  color: #fff !important;
+}
+
+// 边框工具类
+.border-primary {
+  border-color: var(--ant-primary-color) !important;
+}
+
+.border-success {
+  border-color: var(--ant-success-color) !important;
+}
+
+.border-warning {
+  border-color: var(--ant-warning-color) !important;
+}
+
+.border-error {
+  border-color: var(--ant-error-color) !important;
+}
+
+.border-info {
+  border-color: var(--ant-info-color) !important;
+}

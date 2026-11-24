@@ -1,0 +1,453 @@
+# 项目相关配置
+ruoyi:
+  # 名称
+  name: "xmzs"
+  # 版本
+  version: ${revision}
+  # 版权年份
+  copyrightYear: 2023
+  # 实例演示开关
+  demoEnabled: true
+  # 获取ip地址开关
+  addressEnabled: false
+
+captcha:
+  enable: true
+  # 页面 <参数设置> 可开启关闭 验证码校验
+  # 验证码类型 math 数组计算 char 字符验证
+  type: MATH
+  # line 线段干扰 circle 圆圈干扰 shear 扭曲干扰
+  category: CIRCLE
+  # 数字验证码位数
+  numberLength: 1
+  # 字符验证码长度
+  charLength: 4
+
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8500
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  # undertow 配置
+  undertow:
+    # HTTP post内容的最大大小。当值为-1时，默认值为大小是无限的
+    max-http-post-size: -1
+    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+    # 每块buffer的空间大小,越小的空间被利用越充分
+    buffer-size: 512
+    # 是否分配的直接内存
+    direct-buffers: true
+    threads:
+      # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+      io: 8
+      # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+      worker: 256
+
+# 日志配置
+logging:
+  level:
+    com.xmzs: @logging.level@
+    org.springframework: warn
+  config: classpath:logback-plus.xml
+
+# 用户配置
+user:
+  password:
+    # 密码最大错误次数
+    maxRetryCount: 5
+    # 密码锁定时间（默认10分钟）
+    lockTime: 5
+
+# Spring配置
+spring:
+  application:
+    name: ${ruoyi.name}
+  # 资源信息
+  messages:
+    # 国际化资源文件路径，支持多个模块
+    basename: i18n/messages
+  profiles:
+    active: @profiles.active@
+    include: coedit
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 50MB
+      # 设置总上传的文件大小
+      max-request-size: 200MB
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+  jackson:
+    # 日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      # 格式化输出
+      indent_output: false
+      # 忽略无法转换的对象
+      fail_on_empty_beans: false
+    deserialization:
+      # 允许对象忽略json中不存在的属性
+      fail_on_unknown_properties: false
+
+# Sa-Token配置
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: Authorization
+  # token有效期 设为7天 (必定过期) 单位: 秒
+  timeout: 604800
+  # token临时有效期 (指定时间无操作就过期) 单位: 秒
+  activity-timeout: 604800
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  # 修改为false，让每个设备都有独立的token，避免多设备登录冲突
+  is-share: false
+  # 是否尝试从header里读取token
+  is-read-header: true
+  # 是否尝试从cookie里读取token
+  is-read-cookie: true
+  # token前缀
+  token-prefix: "Bearer"
+  # jwt秘钥
+  jwt-secret-key: babcdefghijklmnopqrstuvwxyza
+
+# security配置
+security:
+  # 排除路径
+  excludes:
+    #未登录用户上传文件
+    - /web/free_upload
+    # 修改用户头像
+    - /system/user/edit/avatar
+    - /pay/returnUrl
+    - /pay/notifyUrl
+    # 上传文件
+    - /resource/oss/upload
+    # 重置密码
+    - /auth/reset/password
+    # 聊天接口
+    - /chat
+    # ONLYOFFICE相关接口(允许ONLYOFFICE Document Server访问)
+    - /coedit/file/download/**
+    - /coedit/callback/**
+    # 共享链接访问接口(允许未登录用户访问)
+    - /coedit/share/access
+    - /coedit/share/access/**
+    - /coedit/share/check/**
+    # 静态资源
+    - /*.html
+    - /**/*.html
+    - /**/*.css
+    - /**/*.js
+    # 公共路径
+    - /favicon.ico
+    - /error
+    - /pay/aliPaynotify
+    - /pay/notifyUrl
+    # swagger 文档配置
+    - /*/api-docs
+    - /*/api-docs/**
+    # actuator 监控配置
+    - /actuator
+    - /actuator/**
+    #临时解放
+    - /api/v1/telegram/test-message
+    - /exchange/monitor/notification/test
+    - /api/exchange/monitor/notification/test
+    - /**/notification/**
+    # WebSocket连接
+    - /ws/**
+    # OnlyOffice协同编辑相关接口
+    - /coedit/callback/**
+    - /coedit/file/**
+    - /coedit/editor/**
+    #协同编辑 OnlyOffice Document Server回调、公开分享
+    - /coedit/callback/**      # OnlyOffice回调接口
+    - /coedit/file/**          # 文件下载接口(供OnlyOffice访问)
+    - /coedit/config/**        # 编辑器配置接口
+    - /coedit/editor/**        # 编辑器页面
+    - /coedit/share/**         #分享
+    - /coedit/file/dev/clear-all
+    - /system/user/testSaveOrgAndUsers
+
+# 多租户配置
+tenant:
+  # 是否开启
+  enable: false
+  # 排除表
+  excludes:
+    - sys_menu
+    - sys_tenant
+    - sys_tenant_package
+    - sys_role_dept
+    - sys_role_menu
+    - sys_user_post
+    - sys_user_role
+
+# MyBatisPlus配置
+# https://baomidou.com/config/
+mybatis-plus:
+  # 不支持多包, 如有需要可在注解配置 或 提升扫包等级
+  # 例如 com.**.**.mapper
+  mapperPackage: com.xmzs.**.mapper
+  # 对应的 XML 文件位置
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # 实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.xmzs.**.domain
+  # 启动时是否检查 MyBatis XML 文件的存在，默认不检查
+  checkConfigLocation: false
+  configuration:
+    # 自动驼峰命名规则（camel case）映射
+    mapUnderscoreToCamelCase: true
+    # MyBatis 自动映射策略
+    # NONE：不启用 PARTIAL：只对非嵌套 resultMap 自动映射 FULL：对所有 resultMap 自动映射
+    autoMappingBehavior: FULL
+    # MyBatis 自动映射时未知列或未知属性处理策
+    # NONE：不做处理 WARNING：打印相关警告 FAILING：抛出异常和详细信息
+    autoMappingUnknownColumnBehavior: NONE
+    # 更详细的日志输出 会有性能损耗 org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭日志记录 (可单纯使用 p6spy 分析) org.apache.ibatis.logging.nologging.NoLoggingImpl
+    # 默认日志输出 org.apache.ibatis.logging.slf4j.Slf4jImpl
+    logImpl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  global-config:
+    # 是否打印 Logo banner
+    banner: true
+    dbConfig:
+      # 主键类型
+      # AUTO 自增 NONE 空 INPUT 用户输入 ASSIGN_ID 雪花 ASSIGN_UUID 唯一 UUID
+      idType: ASSIGN_ID
+      # 逻辑已删除值
+      logicDeleteValue: 2
+      # 逻辑未删除值
+      logicNotDeleteValue: 0
+      # 字段验证策略之 insert,在 insert 的时候的字段验证策略
+      # IGNORED 忽略 NOT_NULL 非NULL NOT_EMPTY 非空 DEFAULT 默认 NEVER 不加入 SQL
+      insertStrategy: NOT_NULL
+      # 字段验证策略之 update,在 update 的时候的字段验证策略
+      updateStrategy: NOT_NULL
+      # 字段验证策略之 select,在 select 的时候的字段验证策略既 wrapper 根据内部 entity 生成的 where 条件
+      where-strategy: NOT_NULL
+
+# 数据加密
+mybatis-encryptor:
+  # 是否开启加密
+  enable: false
+  # 默认加密算法
+  algorithm: BASE64
+  # 编码方式 BASE64/HEX。默认BASE64
+  encode: BASE64
+  # 安全秘钥 对称算法的秘钥 如：AES，SM4
+  password:
+  # 公私钥 非对称算法的公私钥 如：SM2，RSA
+  publicKey:
+  privateKey:
+
+# Swagger配置
+swagger:
+  info:
+    # 标题
+    title: '标题：${ruoyi.name}多租户管理系统_接口文档'
+    # 描述
+    description: '描述：用于管理集团旗下公司的人员信息,具体包括XXX,XXX模块...'
+    # 版本
+    version: '版本号: ${ruoyi.version}'
+    # 作者信息
+    contact:
+      name: zuleed
+      email: zuleed@163.com
+      url: https://zuleed.com
+  components:
+    # 鉴权方式配置
+    security-schemes:
+      apiKey:
+        type: APIKEY
+        in: HEADER
+        name: ${sa-token.token-name}
+
+springdoc:
+  api-docs:
+    # 是否开启接口文档
+    enabled: true
+  swagger-ui:
+    # 持久化认证数据
+    persistAuthorization: true
+  #这里定义了两个分组，可定义多个，也可以不定义
+  group-configs:
+    - group: 1.演示模块
+      packages-to-scan: com.xmzs.demo
+    - group: 2.通用模块
+      packages-to-scan: com.xmzs.web
+    - group: 3.系统模块
+      packages-to-scan: com.xmzs.system
+    - group: 4.代码生成模块
+      packages-to-scan: com.xmzs.generator
+    - group: 5.协同编辑模块
+      packages-to-scan: com.xmzs.coEdit
+
+# 防止XSS攻击
+xss:
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*,/coEdit/*
+
+# 全局线程池相关配置
+thread-pool:
+  # 是否开启线程池
+  enabled: false
+  # 队列最大长度
+  queueCapacity: 128
+  # 线程池维护线程所允许的空闲时间
+  keepAliveSeconds: 300
+
+--- # 分布式锁 lock4j 全局配置
+lock4j:
+  # 获取分布式锁超时时间，默认为 3000 毫秒
+  acquire-timeout: 3000
+  # 分布式锁的超时时间，默认为 30 秒
+  expire: 30000
+
+--- # Actuator 监控端点的配置项
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+    logfile:
+      external-file: ./logs/sys-console.log
+
+--- # websocket
+websocket:
+  enabled: true
+  # 路径
+  path: '/websocket'
+  # 设置访问源地址
+  allowedOrigins: '*'
+
+# 微信小程序配置信息
+wx:
+  miniapp:
+    configs:
+      - appid: # 你的appid
+        secret: # 你的secret
+        token: #微信小程序消息服务器配置的token
+        aesKey: #微信小程序消息服务器配置的EncodingAESKey
+        msgDataFormat: JSON
+baidu:
+  # 是否开启文本审核
+  enabled: false
+  # 文本审核
+  textReview:
+    apiKey: '' # apiKey
+    secretKey: '' # secretKey
+  appKey: xx
+  secretKey: xx
+
+wechat:
+  #  是否使用微信 true/false
+  enable: true
+  #  生成的登录二维码路径 默认与项目同级
+  qrPath: "./"
+
+keyword:
+  #  重置会话指令
+  reset: "重置会话"
+  #  ai画图指令(DALL·E模型 https://platform.openai.com/docs/models/dall-e)
+  #  generation 根据关键词生成图片(https://platform.openai.com/docs/guides/images/generations)
+  image: "ai画图"
+  #  ai语音指令(TTS模型 https://platform.openai.com/docs/api-reference/audio)
+  audio: "ai语音"
+
+# 知识库配置
+chain:
+  split:
+    chunk:
+      endspliter: "<STOP>"
+      # 分块文本大小
+      size: 500
+      overlay: 0
+      qaspliter: "######"
+  # 知识库中检索的条数
+  limits: 5
+  vectorization:
+    type: openai
+    openai:
+      model: 'text-embedding-3-small'
+    baidu:
+      model: bge-large-zh
+    zhipu:
+      model: embedding-2
+      # 智普API KEY
+      token: xx
+  vector:
+    store:
+      type: weaviate
+      weaviate:
+        protocol: http
+        host: 192.168.245.129:6038
+#        host: 47.254.147.107:6038
+#        host: 13.213.113.111:6038
+        classname: LocalKnowledge
+      milvus:
+        host: 127.0.0.1
+        port: 19530
+        dimension: 1536
+        collection: LocalKnowledge
+  llm:
+    openai:
+      token: sk-G6QFYt3xMdo2dC0A320078
+      model: gpt-4-1106-preview
+    chatglm:
+      baseurl: http://127.0.0.1:8000/
+      model: chatglm2-6b
+    baidu:
+      appKey: ${baidu.appKey}
+      secretKey: ${baidu.secretKey}
+      model: ernie_bot
+    zhipu:
+      model: glm-4
+    audio:
+      type: openai
+    text:
+      type: openai
+    function:
+      type: baidu
+    vision:
+      type: openai
+    image:
+      type: openai
+
+upload:
+  path: /data/upload
+
+proxy:
+  socket:
+    vpnEnabled: true
+    host: 127.0.0.1
+    port: 7897
+
+resource:
+  domain: http://127.0.0.1:${server.port}/resources
+
+--- # sms 短信
+sms:
+  enabled: true
+  # 阿里云 dysmsapi.aliyuncs.com
+  # 腾讯云 sms.tencentcloudapi.com
+  endpoint: "dysmsapi.aliyuncs.com"
+  accessKeyId: "LTAI5tLXX2H73mH9dnX7Kr1c"
+  accessKeySecret: "7wHntIHrNVI9YHSZPnKzMQaUqzptMb"
+  signName: "面试星"
+  # 腾讯专用
+  sdkAppId:
+
+

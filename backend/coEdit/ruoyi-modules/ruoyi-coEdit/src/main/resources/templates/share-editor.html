@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${fileName} + ' - 文档编辑器'">文档编辑器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-title .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5568d3;
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d0d0d0;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px); /* 减去头部高度 */
+        }
+
+        #editor-container {
+            flex-grow: 1;
+            position: relative;
+            background-color: #fff;
+        }
+
+        #collaboration-panel {
+            width: 280px;
+            flex-shrink: 0;
+            border-left: 1px solid #e0e0e0;
+            background-color: #fafafa;
+            padding: 16px;
+            overflow-y: auto;
+            transition: width 0.3s;
+        }
+
+        #collaboration-panel.hidden {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* 确保 OnlyOffice 创建的 iframe 填充整个容器 */
+        #editor-container iframe {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            border: none !important;
+        }
+
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 60px);
+            color: #666;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 60px);
+            color: #f44336;
+        }
+
+        .error-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">
+            <span class="icon">📄</span>
+            <span th:text="${fileName}">文档名称</span>
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-secondary" onclick="window.close()">关闭</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div id="editor-container">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>正在加载编辑器...</p>
+            </div>
+        </div>
+        <div id="collaboration-panel">
+            <!-- Collaboration content will be injected here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- OnlyOffice Document Server API -->
+    <script th:src="${documentServerUrl} + '/web-apps/apps/api/documents/api.js'"></script>
+
+    <script th:inline="javascript">
+        console.log('初始化编辑器脚本开始执行')
+        // 从后端获取配置
+        const config = /*[[${config}]]*/ {};
+        const documentServerUrl = /*[[${documentServerUrl}]]*/ '';
+        const fileId = /*[[${fileId}]]*/ '';
+
+        console.log('编辑器配置:', config);
+        console.log('Document Server URL:', documentServerUrl);
+
+        // 等待API加载完成
+        let checkApiInterval = setInterval(function() {
+            if (typeof DocsAPI !== 'undefined') {
+                clearInterval(checkApiInterval);
+                initEditor();
+            }
+        }, 100);
+
+        // 初始化编辑器
+        function initEditor() {
+            try {
+                // 添加事件处理器
+                if (!config.events) {
+                    config.events = {};
+                }
+
+                // 文档准备就绪
+                config.events.onDocumentReady = function() {
+                    console.log('文档已准备就绪');
+                };
+
+                // 文档状态改变
+                config.events.onDocumentStateChange = function(event) {
+                    console.log('文档状态改变:', event);
+                };
+
+                // 错误处理
+                config.events.onError = function(event) {
+                    console.error('编辑器错误:', event);
+                    showError('编辑器加载失败: ' + (event.data || '未知错误'));
+                };
+
+                // 编辑器关闭
+                config.events.onRequestClose = function() {
+                    console.log('请求关闭编辑器');
+                    window.close();
+                };
+
+                // 创建编辑器实例
+                const docEditor = new DocsAPI.DocEditor("editor-container", config);
+
+                console.log('编辑器初始化成功');
+
+            } catch (error) {
+                console.error('初始化编辑器失败:', error);
+                showError('初始化编辑器失败: ' + error.message);
+            }
+        }
+
+        // 显示错误信息
+        function showError(message) {
+            const container = document.getElementById('editor-container');
+            container.innerHTML = `
+                <div class="error-message">
+                    <div class="error-icon">⚠️</div>
+                    <h2>加载失败</h2>
+                    <p>${message}</p>
+                    <button class="btn btn-primary" onclick="location.reload()" style="margin-top: 20px;">
+                        重新加载
+                    </button>
+                </div>
+            `;
+        }
+
+        // 超时检测
+        setTimeout(function() {
+            if (typeof DocsAPI === 'undefined') {
+                showError('无法连接到OnlyOffice Document Server,请检查服务器配置');
+            }
+        }, 10000);
+
+    </script>
+
+    <!-- SockJS for WebSocket fallback -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+
+    <!-- Real-time Collaboration Script -->
+    <script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        // 从Thymeleaf获取后端数据
+        const shareCode = /*[[${shareCode}]]*/ '';
+        const fileId = /*[[${fileId}]]*/ '';
+        const isAuthenticated = /*[[${isAuthenticated}]]*/ false;
+        const currentUserId = /*[[${currentUserId}]]*/ null;
+
+        // 等待config变量可用
+        function waitForConfig() {
+            if (typeof window.config !== 'undefined' && window.config.editorConfig && window.config.editorConfig.user) {
+                const currentUser = window.config.editorConfig.user;
+                initCollaboration(currentUser);
+            } else {
+                // 如果config还未定义，等待100ms后重试
+                setTimeout(waitForConfig, 100);
+            }
+        }
+
+        function initCollaboration(currentUser) {
+
+            const collaborationPanel = document.getElementById('collaboration-panel');
+            let socket = null;
+            let onlineUsers = [];
+
+            // 初始化协作面板UI
+            function initCollaborationPanel() {
+                collaborationPanel.innerHTML = `
+                    <div class="panel-header">
+                        <h3>实时协作</h3>
+                        <div class="connection-status" id="conn-status">
+                            <span class="dot connecting"></span>
+                            <span>连接中...</span>
+                        </div>
+                    </div>
+                    <div class="users-header">
+                        <span>在线用户 (<span id="user-count">0</span>)</span>
+                    </div>
+                    <div class="users-list" id="users-list">
+                        <p class="empty-state">暂无其他协作者</p>
+                    </div>
+                `;
+            }
+
+        // 更新在线用户列表UI
+        function updateOnlineUsersUI() {
+            const userListContainer = document.getElementById('users-list');
+            const userCountEl = document.getElementById('user-count');
+            userCountEl.textContent = onlineUsers.length;
+
+            if (onlineUsers.length === 0) {
+                userListContainer.innerHTML = '<p class="empty-state">暂无其他协作者</p>';
+                return;
+            }
+
+            userListContainer.innerHTML = '';
+            onlineUsers.forEach(user => {
+                const userEl = document.createElement('div');
+                userEl.className = 'user-item' + (user.userId === currentUser.id ? ' current-user' : '');
+                const userColor = getUserColor(user.userId || user.sessionId);
+                userEl.innerHTML = `
+                    <div class="user-avatar" style="background-color: ${userColor}">${user.userName.charAt(0)}</div>
+                    <div class="user-info">
+                        <span class="user-name">${user.userName} ${user.userId === currentUser.id ? '(我)' : ''}</span>
+                        <span class="user-role">${user.isAuthenticated ? '认证用户' : '访客'}</span>
+                    </div>
+                `;
+                userListContainer.appendChild(userEl);
+            });
+        }
+
+        // 更新连接状态UI
+        function updateConnectionStatusUI(status, message) {
+            const connStatusEl = document.getElementById('conn-status');
+            connStatusEl.innerHTML = `<span class="dot ${status}"></span><span>${message}</span>`;
+        }
+
+        // 为用户生成一个固定的颜色
+        function getUserColor(userId) {
+            const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'];
+            let hash = 0;
+            for (let i = 0; i < userId.length; i++) {
+                hash = userId.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return colors[Math.abs(hash) % colors.length];
+        }
+
+        // 连接WebSocket
+        function connectWebSocket() {
+            const params = new URLSearchParams({
+                shareCode: shareCode,
+                fileId: fileId,
+                userId: currentUser.id,
+                userName: currentUser.name,
+                isAuthenticated: isAuthenticated
+            });
+
+            const host = window.location.host;
+            const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+            const sockjsUrl = `${protocol}//${host}/ws/collaboration?${params.toString()}`;
+
+            try {
+                socket = new SockJS(sockjsUrl);
+
+                socket.onopen = function() {
+                    console.log('协作WebSocket连接成功');
+                    updateConnectionStatusUI('connected', '已连接');
+                };
+
+                socket.onmessage = function(e) {
+                    const message = JSON.parse(e.data);
+                    console.log('收到协作消息:', message);
+                    switch (message.type) {
+                        case 'online_users':
+                            onlineUsers = message.data;
+                            updateOnlineUsersUI();
+                            break;
+                        case 'user_joined':
+                            if (!onlineUsers.some(u => u.sessionId === message.data.sessionId)) {
+                                onlineUsers.push(message.data);
+                            }
+                            updateOnlineUsersUI();
+                            break;
+                        case 'user_left':
+                            onlineUsers = onlineUsers.filter(u => u.sessionId !== message.data.sessionId);
+                            updateOnlineUsersUI();
+                            break;
+                    }
+                };
+
+                socket.onclose = function() {
+                    console.log('协作WebSocket连接已断开');
+                    updateConnectionStatusUI('disconnected', '已断开');
+                };
+
+                socket.onerror = function(err) {
+                    console.error('协作WebSocket连接错误:', err);
+                    updateConnectionStatusUI('error', '连接错误');
+                };
+
+            } catch (error) {
+                console.error('创建SockJS实例失败:', error);
+                updateConnectionStatusUI('error', '连接失败');
+            }
+        }
+
+            // 在编辑器准备好之后再连接
+            const originalOnReady = window.config.events.onDocumentReady || function() {};
+            window.config.events.onDocumentReady = function() {
+                originalOnReady();
+                console.log('文档已准备就绪，开始连接协作服务...');
+                initCollaborationPanel();
+                connectWebSocket();
+            };
+
+            // 添加一些协作面板的CSS样式
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .panel-header { margin-bottom: 16px; }
+                .panel-header h3 { font-size: 16px; margin-bottom: 8px; }
+                .connection-status { display: flex; align-items: center; font-size: 12px; color: #666; }
+                .connection-status .dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+                .connection-status .dot.connecting { background-color: #faad14; }
+                .connection-status .dot.connected { background-color: #52c41a; }
+                .connection-status .dot.disconnected, .connection-status .dot.error { background-color: #ff4d4f; }
+                .users-header { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+                .users-list .user-item { display: flex; align-items: center; padding: 8px 0; gap: 10px; }
+                .users-list .user-item.current-user { font-weight: bold; }
+                .users-list .user-avatar { width: 32px; height: 32px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+                .users-list .user-info { display: flex; flex-direction: column; }
+                .users-list .user-name { font-size: 13px; }
+                .users-list .user-role { font-size: 11px; color: #888; }
+                .users-list .empty-state { color: #999; font-size: 13px; text-align: center; padding: 20px 0; }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // 启动等待config的流程
+        waitForConfig();
+    });
+    </script>
+</body>
+</html>
+

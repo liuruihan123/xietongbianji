@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分享文档 - 正在跳转...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .loading-container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1890ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .message {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .sub-message {
+            color: #999;
+            font-size: 14px;
+        }
+        .error-message {
+            color: #ff4d4f;
+            margin-top: 20px;
+        }
+        .retry-button {
+            background: #1890ff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .retry-button:hover {
+            background: #40a9ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <div class="message">正在跳转到分享文档...</div>
+        <div class="sub-message">如果页面没有自动跳转，请点击下方按钮</div>
+        <div id="error-container" style="display: none;">
+            <div class="error-message">跳转失败，请手动点击按钮重试</div>
+            <button class="retry-button" onclick="performRedirect()">手动跳转</button>
+        </div>
+    </div>
+
+    <script>
+        // 防止多次执行
+        let redirectExecuted = false;
+        
+        function performRedirect() {
+            if (redirectExecuted) return;
+            redirectExecuted = true;
+            
+            try {
+                // 获取当前URL信息
+                const pathname = window.location.pathname;
+                const search = window.location.search;
+                
+                console.log('当前路径:', pathname);
+                console.log('查询参数:', search);
+                
+                // 提取分享码
+                let shareCode = '';
+                
+                // 尝试从多种URL格式中提取分享码
+                const patterns = [
+                    /\/api\/coedit\/share\/open\/([^\/\?]+)/,  // /api/coedit/share/open/{code}
+                    /\/share\/open\/([^\/\?]+)/,              // /share/open/{code}
+                    /\/open\/([^\/\?]+)/,                     // /open/{code}
+                    /\/([^\/\?]+)$/                           // 直接是分享码
+                ];
+                
+                for (const pattern of patterns) {
+                    const match = pathname.match(pattern);
+                    if (match && match[1]) {
+                        shareCode = match[1];
+                        break;
+                    }
+                }
+                
+                if (!shareCode) {
+                    throw new Error('无法从URL中提取分享码');
+                }
+                
+                console.log('提取的分享码:', shareCode);
+                
+                // 构造前端分享编辑器URL
+                const frontendUrl = `/share/editor/${shareCode}${search}`;
+                
+                console.log('准备跳转到:', frontendUrl);
+                
+                // 执行跳转
+                window.location.replace(frontendUrl);
+                
+            } catch (error) {
+                console.error('跳转失败:', error);
+                showError();
+            }
+        }
+        
+        function showError() {
+            document.querySelector('.spinner').style.display = 'none';
+            document.querySelector('.message').textContent = '跳转失败';
+            document.querySelector('.sub-message').textContent = '请检查分享链接是否正确';
+            document.getElementById('error-container').style.display = 'block';
+        }
+        
+        // 页面加载完成后自动执行跳转
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面加载完成，开始执行跳转');
+            
+            // 延迟500ms执行，确保页面完全加载
+            setTimeout(performRedirect, 500);
+            
+            // 设置超时，如果5秒内没有跳转成功则显示错误
+            setTimeout(function() {
+                if (!redirectExecuted) {
+                    console.log('跳转超时，显示错误信息');
+                    showError();
+                }
+            }, 5000);
+        });
+        
+        // 全局错误处理
+        window.addEventListener('error', function(event) {
+            console.error('页面错误:', event.error);
+            showError();
+        });
+    </script>
+</body>
+</html>

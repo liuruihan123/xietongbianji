@@ -1,0 +1,79 @@
+# 新币上线通知功能配置示例
+# 此配置文件展示了如何配置各种通知渠道
+
+# 加密货币监控配置
+crypto:
+  monitor:
+    notification:
+      enabled: true  # 是否启用通知功能
+      webhook:
+        url: "https://your-webhook-url.com/notify"  # Webhook通知地址
+
+# 邮件配置
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: your-email@gmail.com
+    password: your-app-password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# 通知服务配置
+notification:
+  # 默认通知提供商
+  default-provider: "twilio"
+
+  # 是否启用SMS功能
+  enable-sms: true
+
+  # 是否启用语音通话功能
+  enable-voice: true
+
+  # 最大重试次数
+  max-retry-times: 3
+
+  # 超时时间（秒）
+  timeout-seconds: 30
+
+  # Twilio配置
+  twilio:
+    enabled: true
+    account-sid: "your-twilio-account-sid"
+    auth-token: "your-twilio-auth-token"
+    from-phone: "+1234567890"
+    webhook-url: "https://your-domain.com/twilio/webhook"
+
+  # 互亿无线配置
+  ihuyi:
+    enabled: false
+    api-id: "your-ihuyi-api-id"
+    api-key: "your-ihuyi-api-key"
+    sms-template-id: "your-sms-template-id"
+    voice-template-id: "your-voice-template-id"
+
+# Telegram Bot配置
+telegram:
+  bot:
+    enabled: true
+    token: "your-telegram-bot-token"
+    username: "your-bot-username"
+    # 通知频率限制（分钟）
+    notification-rate-limit-minutes: 10
+    # 是否启用通知频率限制（防骚扰功能开关）
+    notification-rate-limit-enabled: true
+    webhook:
+      url: "https://your-domain.com/telegram/webhook"
+
+
+
+# 数据库配置示例（如果需要单独配置）
+# spring:
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/bicanmou?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+#     username: root
+#     password: password

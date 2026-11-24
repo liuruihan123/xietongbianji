@@ -1,0 +1,33 @@
+-- 文件转换记录表
+CREATE TABLE IF NOT EXISTS `co_file_conversion` (
+    `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '转换ID',
+    `source_file_id` BIGINT(20) NOT NULL COMMENT '源文件ID',
+    `source_file_name` VARCHAR(255) NOT NULL COMMENT '源文件名称',
+    `source_file_type` VARCHAR(50) NOT NULL COMMENT '源文件类型',
+    `source_file_path` VARCHAR(500) NOT NULL COMMENT '源文件路径',
+    `source_file_url` VARCHAR(500) NOT NULL COMMENT '源文件URL',
+    `target_file_type` VARCHAR(50) NOT NULL COMMENT '目标文件类型',
+    `target_file_name` VARCHAR(255) DEFAULT NULL COMMENT '目标文件名称',
+    `target_file_path` VARCHAR(500) DEFAULT NULL COMMENT '目标文件路径',
+    `target_file_url` VARCHAR(500) DEFAULT NULL COMMENT '目标文件URL',
+    `target_file_size` BIGINT(20) DEFAULT NULL COMMENT '目标文件大小',
+    `status` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '转换状态：0-等待中 1-转换中 2-成功 3-失败',
+    `progress` INT(3) NOT NULL DEFAULT 0 COMMENT '转换进度（0-100）',
+    `fail_reason` VARCHAR(500) DEFAULT NULL COMMENT '失败原因',
+    `conversion_key` VARCHAR(255) NOT NULL COMMENT '转换Key',
+    `start_time` DATETIME DEFAULT NULL COMMENT '开始时间',
+    `end_time` DATETIME DEFAULT NULL COMMENT '结束时间',
+    `duration` BIGINT(20) DEFAULT NULL COMMENT '耗时（毫秒）',
+    `user_id` BIGINT(20) NOT NULL COMMENT '用户ID',
+    `user_name` VARCHAR(100) NOT NULL COMMENT '用户名称',
+    `create_by` BIGINT(20) DEFAULT NULL COMMENT '创建者',
+    `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_by` BIGINT(20) DEFAULT NULL COMMENT '更新者',
+    `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    KEY `idx_source_file_id` (`source_file_id`),
+    KEY `idx_user_id` (`user_id`),
+    KEY `idx_status` (`status`),
+    KEY `idx_create_time` (`create_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='文件转换记录表';
+

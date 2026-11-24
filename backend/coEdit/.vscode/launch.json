@@ -1,0 +1,15 @@
+{
+    "configurations": [
+
+        {
+            "type": "java",
+            "name": "Spring Boot-PandaApplication<ruoyi-admin>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.xmzs.PandaApplication",
+            "projectName": "ruoyi-admin",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

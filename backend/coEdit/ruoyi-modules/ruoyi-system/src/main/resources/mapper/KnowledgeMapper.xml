@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmzs.knowledge.mapper.KnowledgeMapper">
+
+    <resultMap id="BaseResultMap" type="com.xmzs.knowledge.domain.Knowledge">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="kid" column="kid" jdbcType="VARCHAR"/>
+            <result property="kname" column="kname" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="typeId" column="type_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+
+    <!-- 多结构嵌套自动映射需带上每个实体的主键id 否则映射会失败 -->
+    <resultMap type="com.xmzs.knowledge.domain.vo.KnowledgeInfoVo" id="KnowledgeInfoResult">
+        <id property="id" column="id"/>
+        <result property="typeId" column="type_id"/>
+        <result property="typeId" column="type_id"/>
+        <association property="knowledgeType" column="type_id" resultMap="typeResult"/>
+    </resultMap>
+
+    <resultMap id="typeResult" type="com.xmzs.system.domain.vo.KnowledgeTypeVo">
+        <id property="id" column="id"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,kid,kname,description,
+        create_time,create_by,type_id
+    </sql>
+<!--    <select id="selectPageKnowledgeList" resultType="com.xmzs.knowledge.domain.Knowledge">-->
+    <select id="selectPageKnowledgeList" resultMap="KnowledgeInfoResult">
+        SELECT k.id,k.kid,k.uid,k.kname,k.type_id,kt.name ,k.description,k.create_time,k.create_by FROM knowledge_info k LEFT JOIN knowledge_type kt ON k.type_id= kt.id
+            ${ew.getCustomSqlSegment}
+    </select>
+
+
+
+
+
+</mapper>

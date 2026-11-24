@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmzs.system.mapper.ModelSettingMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.xmzs.system.domain.ModelSetting">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="kid" column="kid" jdbcType="VARCHAR"/>
+        <result property="useKnowledge" column="use_knowledge" jdbcType="CHAR"/>
+
+        <result property="shortNoOpen" column="short_no_open" jdbcType="INTEGER"/>
+        <result property="standardTemplateId" column="standard_template_id" jdbcType="BIGINT"/>
+        <result property="afterTalkCount" column="after_talk_count" jdbcType="VARCHAR"/>
+        <result property="ttsSpeed" column="tts_speed" jdbcType="DOUBLE"/>
+
+
+        <result property="busType" column="bus_type" jdbcType="INTEGER"/>
+        <result property="modelId" column="model_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="systemRole" column="system_role" jdbcType="INTEGER"/>
+        <result property="talkCount" column="talk_count" jdbcType="INTEGER"/>
+        <result property="ttsVoice" column="tts_voice" jdbcType="VARCHAR"/>
+        <result property="temperature" column="temperature" jdbcType="FLOAT"/>
+        <result property="topP" column="top_p" jdbcType="FLOAT"/>
+        <result property="maxTokens" column="max_tokens" jdbcType="INTEGER"/>
+        <result property="presencePenalty" column="presence_penalty" jdbcType="FLOAT"/>
+        <result property="frequencyPenalty" column="frequency_penalty" jdbcType="FLOAT"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="CHAR"/>
+        <result property="remark" column="type_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+
+    <!-- 多结构嵌套自动映射需带上每个实体的主键id 否则映射会失败 -->
+    <resultMap type="com.xmzs.system.domain.vo.ModelSettingVo" id="ModelSettingResult">
+        <id property="id" column="id"/>
+        <result property="modelId" column="model_id"/>
+        <result property="modelId" column="model_id"/>
+        <association property="sysModel" column="model_id" resultMap="typeResult"/>
+    </resultMap>
+
+    <resultMap id="typeResult" type="com.xmzs.system.domain.vo.SysModelVo">
+        <id property="id" column="id"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id,kid,useKnowledge,busType,shortNoOpen,standardTemplateId,afterTalkCount,ttsSpeed,
+        create_time,create_by,modelId,name,systemRole,talkCount,ttsVoice
+    </sql>
+    <!--    <select id="selectPageKnowledgeList" resultType="com.xmzs.knowledge.domain.Knowledge">-->
+    <select id="selectPageModelSettingList" resultMap="ModelSettingResult">
+        SELECT k.id,k.kid,k.use_knowledge,k.short_no_open,k.standard_template_id,k.after_talk_count,k.tts_speed,k.bus_type,k.model_id,k.name,k.system_role,k.talk_count,k.tts_voice,k.temperature,k.top_p,k.max_tokens,k.presence_penalty,k.frequency_penalty,k.create_time,k.status,k.create_by,k.update_by,k.update_time,k.remark,kt.model_describe ,kt.model_name   FROM model_setting k LEFT JOIN sys_model kt ON k.model_id= kt.id
+            ${ew.getCustomSqlSegment}
+    </select>
+
+    <select id="selectModelList" resultMap="ModelSettingResult">
+        SELECT k.id,k.kid,k.use_knowledge,k.short_no_open,k.standard_template_id,k.after_talk_count,k.tts_speed,k.bus_type,k.model_id,k.name,k.system_role,k.talk_count,k.tts_voice,k.temperature,k.top_p,k.max_tokens,k.presence_penalty,k.frequency_penalty,k.create_time,k.status,k.create_by,k.update_by,k.update_time,k.remark,kt.model_describe ,kt.model_name   FROM model_setting k LEFT JOIN sys_model kt ON k.model_id= kt.id
+            ${ew.getCustomSqlSegment}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,260 @@
+// Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Import 协同编辑系统  template styles
+@import "../assets/css/main.css";
+@import "../assets/css/bootstrap.min.css";
+@import "../assets/css/splide.min.css";
+@import "../assets/fonts/tabler-icons.min.css";
+@import "../assets/css/auth-pages.css";
+
+// Global styles for Vue integration
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Manrope", sans-serif;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+// Ant Design Vue integration styles
+.ant-layout {
+  min-height: 100vh;
+}
+
+// Ant Design Spin 容器高度设置
+.ant-spin-container {
+  height: 100;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+iframe{
+  // height: 100vh;
+  height: calc(100vh - 60px);
+}
+
+// CSS Variables for 协同编辑系统  theme
+:root {
+  --main-color: #00d4ff;
+  --main-color-hover: #377cfa;
+  --main-color-dark: #0099cc;
+  --bg-dark: #0b1426;
+  --bg-dark-light: #1a2332;
+  --text-light: rgba(8, 8, 8, 0.8);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --white:#ffffff;
+  --primary:#d0d0d0;
+}
+
+// Override Ant Design styles to match 协同编辑系统  theme
+.ant-btn-primary {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+  // color: #000;
+  font-weight: 600;
+
+  &:hover,
+  &:focus {
+    background-color: var(--main-color-hover);
+    border-color: var(--main-color-hover);
+    // color: #000;
+  }
+
+  &:disabled {
+    background-color: var(--border-color);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+  }
+}
+
+// Input components
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select-selector {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-color);
+  // color: #fff;
+
+  &:hover {
+    border-color: var(--main-color);
+  }
+
+  &:focus,
+  &.ant-input-focused,
+  &.ant-select-focused {
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+  }
+}
+
+.ant-input::placeholder,
+.ant-select-selection-placeholder {
+  color: var(--text-muted);
+}
+
+// Form components
+.ant-form-item-label > label {
+  color: #fff;
+  font-weight: 500;
+}
+
+.ant-checkbox-wrapper {
+  color: #000000;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+// Table components
+.ant-table {
+  background: transparent;
+
+  .ant-table-thead > tr > th {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--border-color);
+    color: #070707;
+    font-weight: 600;
+  }
+
+  .ant-table-tbody > tr > td {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+    color: var(--text-light);
+  }
+
+  .ant-table-tbody > tr:hover > td {
+    background: rgba(0, 212, 255, 0.1);
+  }
+}
+
+// Tabs components
+.ant-tabs-nav {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.ant-tabs-tab {
+  color: var(--text-muted);
+  border: none;
+  background: transparent;
+  border-radius: 5px;
+  margin: 0 0.25rem;
+
+  &:hover {
+    color: var(--main-color);
+  }
+
+  &.ant-tabs-tab-active {
+    background: var(--main-color);
+    color: #000;
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.ant-tabs-ink-bar {
+  display: none;
+}
+
+// Collapse components
+.ant-collapse {
+  background: transparent;
+  border: none;
+
+  .ant-collapse-item {
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+
+    .ant-collapse-header {
+      color: #fff;
+      font-weight: 500;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    .ant-collapse-content-box {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--text-light);
+    }
+
+    .ant-collapse-arrow {
+      color: var(--main-color);
+    }
+  }
+}
+
+// Pagination components
+.ant-pagination {
+  .ant-pagination-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--border-color);
+
+    a {
+      color: #020202;
+    }
+
+    &.ant-pagination-item-active {
+      background: var(--main-color);
+      border-color: var(--main-color);
+
+      a {
+        color: #000;
+      }
+    }
+  }
+
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    .ant-pagination-item-link {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--border-color);
+      color: #fff;
+
+      &:hover {
+        background: var(--main-color);
+        border-color: var(--main-color);
+        color: #000;
+      }
+    }
+  }
+}
+
+// Switch components
+.ant-switch-checked {
+  background: var(--main-color);
+}
+
+// Tag components
+.ant-tag {
+  border-radius: 15px;
+  font-weight: 500;
+}
+
+// Ensure 协同编辑系统  styles take precedence
+.协同编辑系统 -page {
+  font-family: inherit;
+
+  // Reset any conflicting Ant Design styles
+  .ant-layout-content {
+    padding: 0;
+  }
+}

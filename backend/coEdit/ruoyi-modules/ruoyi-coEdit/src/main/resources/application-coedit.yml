@@ -1,0 +1,93 @@
+# OnlyOffice协同编辑模块配置
+onlyoffice:
+  # OnlyOffice Document Server地址
+  document-server-url: http://192.168.245.129:9000
+
+  # OnlyOffice Document Server内部地址（可选，用于服务器间通信）
+  document-server-internal-url: http://192.168.245.129:9000
+
+  # 回调地址前缀（需要配置为外网可访问的地址）
+  callback-url: http://your-server-address/coedit/callback
+
+  # JWT配置
+  jwt-enabled: true
+  jwt-secret: QlpL7ye6EPA2P8/mzyoj6944g/mi1Rhllo73nz4U6S4=
+  jwt-header: Authorization
+
+  # 文件存储路径
+  storage-path: ./data/coedit/files
+
+  # 允许的最大文件大小（MB）
+  max-file-size: 100
+
+  # 支持的文档格式
+  supported-formats:
+    - doc
+    - docx
+    - docm
+    - dot
+    - dotx
+    - dotm
+    - odt
+    - fodt
+    - ott
+    - rtf
+    - txt
+    - html
+    - htm
+    - mht
+    - pdf
+    - djvu
+    - fb2
+    - epub
+    - xps
+    - xls
+    - xlsx
+    - xlsm
+    - xlt
+    - xltx
+    - xltm
+    - ods
+    - fods
+    - ots
+    - csv
+    - pps
+    - ppsx
+    - ppsm
+    - ppt
+    - pptx
+    - pptm
+    - pot
+    - potx
+    - potm
+    - odp
+    - fodp
+    - otp
+    # WPS Office 格式
+    - wps    # WPS文字
+    - et     # WPS表格
+    - ett    # WPS表格模板
+    - dps    # WPS演示
+    - dpt    # WPS演示模板
+
+  # 可编辑的文档格式
+  editable-formats:
+    - docx
+    - xlsx
+    - pptx
+    - txt
+    - csv
+
+# Thymeleaf模板引擎配置
+spring:
+  thymeleaf:
+    # 模板模式
+    mode: HTML
+    # 模板编码
+    encoding: UTF-8
+    # 模板缓存(开发环境建议关闭,生产环境建议开启)
+    cache: false
+    # 模板前缀
+    prefix: classpath:/templates/
+    # 模板后缀
+    suffix: .html

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmzs.coedit.mapper.CoRecycleBinMapper">
+
+    <resultMap type="com.xmzs.coedit.domain.vo.CoRecycleBinVo" id="CoRecycleBinResult">
+        <result property="id" column="id"/>
+        <result property="fileId" column="file_id"/>
+        <result property="workspaceId" column="workspace_id"/>
+        <result property="folderId" column="folder_id"/>
+        <result property="folderPath" column="folder_path"/>
+        <result property="fileName" column="file_name"/>
+        <result property="fileType" column="file_type"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="fileExtension" column="file_extension"/>
+        <result property="originalPath" column="original_path"/>
+        <result property="backupPath" column="backup_path"/>
+        <result property="deletedBy" column="deleted_by"/>
+        <result property="deletedByName" column="deleted_by_name"/>
+        <result property="deletedTime" column="deleted_time"/>
+        <result property="deleteReason" column="delete_reason"/>
+        <result property="expireTime" column="expire_time"/>
+        <result property="canRestore" column="can_restore"/>
+        <result property="restoreTime" column="restore_time"/>
+        <result property="restoreBy" column="restore_by"/>
+        <result property="restoreByName" column="restore_by_name"/>
+        <result property="originalOwnerId" column="original_owner_id"/>
+        <result property="originalOwnerName" column="original_owner_name"/>
+        <result property="originalCreateTime" column="original_create_time"/>
+        <result property="originalUpdateTime" column="original_update_time"/>
+        <result property="status" column="status"/>
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+</mapper>
+

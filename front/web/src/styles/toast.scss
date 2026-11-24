@@ -1,0 +1,199 @@
+/* Vue Sonner Toast 自定义样式 */
+
+/* 覆盖默认的 toast 样式 */
+[data-sonner-toaster] {
+  /* 调整 z-index 确保在最顶层 */
+  z-index: 9999 !important;
+}
+
+[data-sonner-toast] {
+  /* 基础样式 */
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* 字体样式 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  
+  /* 动画效果 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* 成功样式 */
+[data-sonner-toast][data-type="success"] {
+  background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%) !important;
+  color: white !important;
+  border-color: #52c41a !important;
+}
+
+[data-sonner-toast][data-type="success"] [data-icon] {
+  color: white !important;
+}
+
+/* 错误样式 */
+[data-sonner-toast][data-type="error"] {
+  background: linear-gradient(135deg, #ff4d4f 0%, #ff7875 100%) !important;
+  color: white !important;
+  border-color: #ff4d4f !important;
+}
+
+[data-sonner-toast][data-type="error"] [data-icon] {
+  color: white !important;
+}
+
+/* 警告样式 */
+[data-sonner-toast][data-type="warning"] {
+  background: linear-gradient(135deg, #faad14 0%, #ffc53d 100%) !important;
+  color: white !important;
+  border-color: #faad14 !important;
+}
+
+[data-sonner-toast][data-type="warning"] [data-icon] {
+  color: white !important;
+}
+
+/* 信息样式 */
+[data-sonner-toast][data-type="info"] {
+  background: linear-gradient(135deg, #1890ff 0%, #40a9ff 100%) !important;
+  color: white !important;
+  border-color: #1890ff !important;
+}
+
+[data-sonner-toast][data-type="info"] [data-icon] {
+  color: white !important;
+}
+
+/* 普通样式 */
+[data-sonner-toast][data-type="default"] {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%) !important;
+  color: #262626 !important;
+  border-color: #d9d9d9 !important;
+}
+
+/* 加载样式 */
+[data-sonner-toast][data-type="loading"] {
+  background: linear-gradient(135deg, #722ed1 0%, #9254de 100%) !important;
+  color: white !important;
+  border-color: #722ed1 !important;
+}
+
+[data-sonner-toast][data-type="loading"] [data-icon] {
+  color: white !important;
+}
+
+/* 关闭按钮样式 */
+[data-sonner-toast] [data-close-button] {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  border-radius: 4px !important;
+  color: inherit !important;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+[data-sonner-toast] [data-close-button]:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* 操作按钮样式 */
+[data-sonner-toast] [data-button] {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 6px !important;
+  color: inherit !important;
+  font-weight: 500;
+  padding: 6px 12px !important;
+  transition: all 0.2s ease;
+}
+
+[data-sonner-toast] [data-button]:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 取消按钮特殊样式 */
+[data-sonner-toast] [data-cancel] {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-sonner-toast] [data-cancel]:hover {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 标题和描述样式 */
+[data-sonner-toast] [data-title] {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+[data-sonner-toast] [data-description] {
+  opacity: 0.9;
+  font-size: 13px;
+}
+
+/* 响应式设计 */
+@media (max-width: 640px) {
+  [data-sonner-toaster] {
+    left: 8px !important;
+    right: 8px !important;
+    width: auto !important;
+  }
+  
+  [data-sonner-toast] {
+    font-size: 13px;
+  }
+}
+
+/* 暗色主题适配 */
+@media (prefers-color-scheme: dark) {
+  [data-sonner-toast][data-type="default"] {
+    background: linear-gradient(135deg, #1f1f1f 0%, #2d2d2d 100%) !important;
+    color: #ffffff !important;
+    border-color: #434343 !important;
+  }
+}
+
+/* 进入动画 */
+[data-sonner-toast][data-mounted="true"] {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* 退出动画 */
+[data-sonner-toast][data-removed="true"] {
+  animation: slideOut 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* 悬停效果 */
+[data-sonner-toast]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+}

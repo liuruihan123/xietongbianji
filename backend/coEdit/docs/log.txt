@@ -1,0 +1,276 @@
+2025-12-04 15:06:11 [http-nio-8500-exec-6] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/version/create],参数类型[json],参数:[]
+2025-12-04 15:06:11 [http-nio-8500-exec-6] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - 版本文件复制成功: versionFilePath=./upload/versions/1996475881870315520/1/444444444.docx, size=25343 bytes
+2025-12-04 15:06:11 [http-nio-8500-exec-6] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - 文件哈希值验证成功: hash=740e992c16bc24da1b43a7f2a34d2b59
+cn.dev33.satoken.session.SaSession@18ceb9be
+2025-12-04 15:06:11 [http-nio-8500-exec-6] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - 创建文件版本: fileId=1996475881870315520, versionNumber=1, userId=1862783534683914242, createdName=竹子
+2025-12-04 15:06:11 [http-nio-8500-exec-6] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/version/create],耗时:[112]毫秒
+2025-12-04 15:06:11 [http-nio-8500-exec-3] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/version/list/1996475881870315520],参数类型[param],参数:[{"pageNum":["1"],"pageSize":["20"]}]
+2025-12-04 15:06:11 [http-nio-8500-exec-3] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/version/list/1996475881870315520],耗时:[22]毫秒
+2025-12-04 15:06:11 [http-nio-8500-exec-8] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/file/1996475881870315520],无参数
+2025-12-04 15:06:11 [http-nio-8500-exec-2] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/editor/config/1996475881870315520],参数类型[param],参数:[{"mode":["edit"]}]
+2025-12-04 15:06:11 [http-nio-8500-exec-2] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:11 [http-nio-8500-exec-2] DEBUG c.x.c.controller.EditorController
+ - 使用配置的服务器地址: http://192.168.110.224:8500
+cn.dev33.satoken.session.SaSession@9a8f029
+2025-12-04 15:06:11 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileAccessRecordServiceImpl
+ - 记录文件访问(Upsert): fileId=1996475881870315520, userId=1862783534683914242, accessType=1, result=2
+2025-12-04 15:06:11 [http-nio-8500-exec-2] DEBUG c.x.c.service.EditorConfigService
+ - 使用默认权限配置
+2025-12-04 15:06:11 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoAccessRecordServiceImpl
+ - 记录访问(Upsert): userId=1862783534683914242, targetType=3, targetId=1996475881870315520, workspaceId=2
+2025-12-04 15:06:11 [http-nio-8500-exec-2] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/editor/config/1996475881870315520],耗时:[12]毫秒
+2025-12-04 15:06:11 [http-nio-8500-exec-8] DEBUG c.x.c.s.i.CoAccessRecordServiceImpl
+ - 记录访问结果: result=2
+2025-12-04 15:06:11 [http-nio-8500-exec-8] DEBUG c.x.c.controller.CoFileController
+ - 记录文件访问: fileId=1996475881870315520, userId=1862783534683914242, accessType=1(查看)
+2025-12-04 15:06:11 [http-nio-8500-exec-8] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/file/1996475881870315520],耗时:[15]毫秒
+2025-12-04 15:06:12 [http-nio-8500-exec-1] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/callback/1996475881870315520],参数类型[json],参数:[]
+2025-12-04 15:06:12 [http-nio-8500-exec-1] INFO  c.x.c.controller.CallbackController
+ - 收到回调请求: fileId=1996475881870315520, status=1, key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:12 [http-nio-8500-exec-1] INFO  c.x.coedit.service.CallbackService
+ - 收到OnlyOffice回调: fileId=1996475881870315520, status=1, key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:12 [http-nio-8500-exec-1] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:12 [http-nio-8500-exec-1] INFO  c.x.coedit.service.CallbackService
+ - 文档正在编辑: fileId=1996475881870315520, users=[1862783534683914242]
+2025-12-04 15:06:12 [http-nio-8500-exec-1] INFO  c.x.coedit.service.CallbackService
+ - 用户操作: userId=1862783534683914242, action=连接
+2025-12-04 15:06:12 [http-nio-8500-exec-1] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/callback/1996475881870315520],耗时:[10]毫秒
+2025-12-04 15:06:18 [http-nio-8500-exec-10] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/editor/force-save/1996475881870315520],参数类型[json],参数:[]
+2025-12-04 15:06:18 [http-nio-8500-exec-10] INFO  c.x.c.controller.EditorController
+ - 收到强制保存请求: fileId=1996475881870315520
+2025-12-04 15:06:18 [http-nio-8500-exec-10] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:18 [http-nio-8500-exec-10] INFO  c.x.c.s.OnlyOfficeCommandService
+ - 开始强制保存文档: fileId=1996475881870315520, documentKey=1996475881870315520_1_1764831918726
+2025-12-04 15:06:18 [http-nio-8500-exec-5] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/callback/1996475881870315520],参数类型[json],参数:[]
+2025-12-04 15:06:18 [http-nio-8500-exec-5] INFO  c.x.c.controller.CallbackController
+ - 收到回调请求: fileId=1996475881870315520, status=1, key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:18 [http-nio-8500-exec-5] INFO  c.x.coedit.service.CallbackService
+ - 收到OnlyOffice回调: fileId=1996475881870315520, status=1, key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:18 [http-nio-8500-exec-5] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:18 [http-nio-8500-exec-5] INFO  c.x.coedit.service.CallbackService
+ - 文档正在编辑: fileId=1996475881870315520, users=[1862783534683914242]
+2025-12-04 15:06:18 [http-nio-8500-exec-5] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/callback/1996475881870315520],耗时:[5]毫秒
+2025-12-04 15:06:18 [http-nio-8500-exec-10] DEBUG c.x.c.s.OnlyOfficeCommandService
+ - 文档有活动编辑会话,继续执行强制保存
+2025-12-04 15:06:18 [http-nio-8500-exec-10] DEBUG c.x.c.s.OnlyOfficeCommandService
+ - 发送强制保存命令到: http://192.168.245.129:9000/coauthoring/CommandService.ashx
+2025-12-04 15:06:18 [http-nio-8500-exec-10] DEBUG c.x.c.s.OnlyOfficeCommandService
+ - 命令内容: {"c":"forcesave","key":"1996475881870315520_1_1764831918726","token":"eyJhbGciOiJIUzI1NiJ9.eyJjIjoiZm9yY2VzYXZlIiwia2V5IjoiMTk5NjQ3NTg4MTg3MDMxNTUyMF8xXzE3NjQ4MzE5MTg3MjYiLCJpYXQiOjE3NjQ4MzE5NzgsImV4cCI6MTc2NDgzNTU3OH0.bQZh89aw3Nlal29OYjw2DsP25_UfrzH-GUII98cH-p0"}
+2025-12-04 15:06:18 [http-nio-8500-exec-10] DEBUG c.x.c.s.OnlyOfficeCommandService
+ - OnlyOffice响应: {"key":"1996475881870315520_1_1764831918726","error":4}
+2025-12-04 15:06:18 [http-nio-8500-exec-10] INFO  c.x.c.s.OnlyOfficeCommandService
+ - 文档未修改所以此处仍然返回true: fileId=1996475881870315520
+2025-12-04 15:06:18 [http-nio-8500-exec-10] INFO  c.x.c.controller.EditorController
+ - 文档强制保存成功: fileId=1996475881870315520
+2025-12-04 15:06:18 [http-nio-8500-exec-10] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/editor/force-save/1996475881870315520],耗时:[29]毫秒
+2025-12-04 15:06:32 [http-nio-8500-exec-2] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/callback/1996475881870315520],参数类型[json],参数:[]
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.c.controller.CallbackController
+ - 收到回调请求: fileId=1996475881870315520, status=6, key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.CallbackService
+ - 收到OnlyOffice回调: fileId=1996475881870315520, status=6, key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:32 [http-nio-8500-exec-2] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.CallbackService
+ - [回调强制保存] 强制保存文档: fileId=1996475881870315520, key=1996475881870315520_1_1764831918726, forceSaveType=1, url=http://192.168.245.129:9000/cache/files/data/1996475881870315520_1_1764831918726_7074/output.docx/output.docx?md5=NHMGi33CJfIgflOo6EsbgA&expires=1764832893&shardkey=1996475881870315520_1_1764831918726&filename=output.docx
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.CallbackService
+ - [DocumentKey验证] 数据库 documentKey=1996475881870315520_1_1764831918508, 回调 key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:32 [http-nio-8500-exec-2] DEBUG c.x.coedit.service.CallbackService
+ - [DocumentKey验证] 格式判断: dbKeyIsUUID=false, callbackKeyIsOldFormat=true
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.CallbackService
+ - [DocumentKey验证] ✓ 旧格式 key 前缀匹配（忽略时间戳差异）: prefix=1996475881870315520_1
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.CallbackService
+ - 开始下载文档: url=http://192.168.245.129:9000/cache/files/data/1996475881870315520_1_1764831918726_7074/output.docx/output.docx?md5=NHMGi33CJfIgflOo6EsbgA&expires=1764832893&shardkey=1996475881870315520_1_1764831918726&filename=output.docx
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.CallbackService
+ - 文档下载完成: size=25385 bytes
+2025-12-04 15:06:32 [http-nio-8500-exec-2] DEBUG c.x.c.service.impl.CoFileServiceImpl
+ - 更新文件路径和大小: fileId=1996475881870315520, filePath=E:\my_project\coEdit\sys_file\1996475881870315520.docx, fileSize=25385, result=1
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.DocumentService
+ - 已更新数据库中的文件路径: fileId=1996475881870315520, path=E:\my_project\coEdit\sys_file\1996475881870315520.docx, size=25385
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.DocumentService
+ - 文档已保存: fileId=1996475881870315520, path=E:\my_project\coEdit\sys_file\1996475881870315520.docx
+2025-12-04 15:06:32 [http-nio-8500-exec-2] INFO  c.x.coedit.service.CallbackService
+ - [回调强制保存] 强制保存成功: fileId=1996475881870315520, type=保存按钮
+2025-12-04 15:06:32 [http-nio-8500-exec-2] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/callback/1996475881870315520],耗时:[23]毫秒
+2025-12-04 15:06:45 [http-nio-8500-exec-7] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/version/create],参数类型[json],参数:[]
+2025-12-04 15:06:45 [http-nio-8500-exec-7] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - 版本文件复制成功: versionFilePath=./upload/versions/1996475881870315520/2/444444444.docx, size=25385 bytes
+2025-12-04 15:06:45 [http-nio-8500-exec-7] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - 文件哈希值验证成功: hash=3b39d24187f6c34056603eb3f2290f64
+cn.dev33.satoken.session.SaSession@6c96027e
+2025-12-04 15:06:45 [http-nio-8500-exec-7] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - 创建文件版本: fileId=1996475881870315520, versionNumber=2, userId=1862783534683914242, createdName=竹子
+2025-12-04 15:06:45 [http-nio-8500-exec-7] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/version/create],耗时:[52]毫秒
+2025-12-04 15:06:45 [http-nio-8500-exec-5] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/version/list/1996475881870315520],参数类型[param],参数:[{"pageNum":["1"],"pageSize":["20"]}]
+2025-12-04 15:06:45 [http-nio-8500-exec-5] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/version/list/1996475881870315520],耗时:[18]毫秒
+2025-12-04 15:06:45 [http-nio-8500-exec-9] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/editor/config/1996475881870315520],参数类型[param],参数:[{"mode":["edit"]}]
+2025-12-04 15:06:45 [http-nio-8500-exec-9] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:45 [http-nio-8500-exec-9] DEBUG c.x.c.controller.EditorController
+ - 使用配置的服务器地址: http://192.168.110.224:8500
+2025-12-04 15:06:45 [http-nio-8500-exec-10] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/file/1996475881870315520],无参数
+cn.dev33.satoken.session.SaSession@1454c30b
+2025-12-04 15:06:45 [http-nio-8500-exec-10] INFO  c.x.c.s.i.CoFileAccessRecordServiceImpl
+ - 记录文件访问(Upsert): fileId=1996475881870315520, userId=1862783534683914242, accessType=1, result=2
+2025-12-04 15:06:45 [http-nio-8500-exec-9] DEBUG c.x.c.service.EditorConfigService
+ - 使用默认权限配置
+2025-12-04 15:06:45 [http-nio-8500-exec-10] INFO  c.x.c.s.i.CoAccessRecordServiceImpl
+ - 记录访问(Upsert): userId=1862783534683914242, targetType=3, targetId=1996475881870315520, workspaceId=2
+2025-12-04 15:06:45 [http-nio-8500-exec-9] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/editor/config/1996475881870315520],耗时:[12]毫秒
+2025-12-04 15:06:45 [http-nio-8500-exec-10] DEBUG c.x.c.s.i.CoAccessRecordServiceImpl
+ - 记录访问结果: result=2
+2025-12-04 15:06:45 [http-nio-8500-exec-10] DEBUG c.x.c.controller.CoFileController
+ - 记录文件访问: fileId=1996475881870315520, userId=1862783534683914242, accessType=1(查看)
+2025-12-04 15:06:45 [http-nio-8500-exec-10] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/file/1996475881870315520],耗时:[15]毫秒
+2025-12-04 15:06:48 [http-nio-8500-exec-6] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/editor/force-save/1996475881870315520],参数类型[json],参数:[]
+2025-12-04 15:06:48 [http-nio-8500-exec-6] INFO  c.x.c.controller.EditorController
+ - 收到强制保存请求: fileId=1996475881870315520
+2025-12-04 15:06:48 [http-nio-8500-exec-6] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:48 [http-nio-8500-exec-6] INFO  c.x.c.s.OnlyOfficeCommandService
+ - 开始强制保存文档: fileId=1996475881870315520, documentKey=1996475881870315520_1_1764831918726
+2025-12-04 15:06:48 [http-nio-8500-exec-4] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/callback/1996475881870315520],参数类型[json],参数:[]
+2025-12-04 15:06:48 [http-nio-8500-exec-4] INFO  c.x.c.controller.CallbackController
+ - 收到回调请求: fileId=1996475881870315520, status=1, key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:48 [http-nio-8500-exec-4] INFO  c.x.coedit.service.CallbackService
+ - 收到OnlyOffice回调: fileId=1996475881870315520, status=1, key=1996475881870315520_1_1764831918726
+2025-12-04 15:06:48 [http-nio-8500-exec-4] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:48 [http-nio-8500-exec-4] INFO  c.x.coedit.service.CallbackService
+ - 文档正在编辑: fileId=1996475881870315520, users=[1862783534683914242]
+2025-12-04 15:06:48 [http-nio-8500-exec-4] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/callback/1996475881870315520],耗时:[5]毫秒
+2025-12-04 15:06:48 [http-nio-8500-exec-6] DEBUG c.x.c.s.OnlyOfficeCommandService
+ - 文档有活动编辑会话,继续执行强制保存
+2025-12-04 15:06:48 [http-nio-8500-exec-6] DEBUG c.x.c.s.OnlyOfficeCommandService
+ - 发送强制保存命令到: http://192.168.245.129:9000/coauthoring/CommandService.ashx
+2025-12-04 15:06:48 [http-nio-8500-exec-6] DEBUG c.x.c.s.OnlyOfficeCommandService
+ - 命令内容: {"c":"forcesave","key":"1996475881870315520_1_1764831918726","token":"eyJhbGciOiJIUzI1NiJ9.eyJjIjoiZm9yY2VzYXZlIiwia2V5IjoiMTk5NjQ3NTg4MTg3MDMxNTUyMF8xXzE3NjQ4MzE5MTg3MjYiLCJpYXQiOjE3NjQ4MzIwMDgsImV4cCI6MTc2NDgzNTYwOH0.uEHWPsH13MRwuaOsk2o7u22dMZhVCd4Ip8T7bxBzCbI"}
+2025-12-04 15:06:48 [http-nio-8500-exec-6] DEBUG c.x.c.s.OnlyOfficeCommandService
+ - OnlyOffice响应: {"key":"1996475881870315520_1_1764831918726","error":4}
+2025-12-04 15:06:48 [http-nio-8500-exec-6] INFO  c.x.c.s.OnlyOfficeCommandService
+ - 文档未修改所以此处仍然返回true: fileId=1996475881870315520
+2025-12-04 15:06:48 [http-nio-8500-exec-6] INFO  c.x.c.controller.EditorController
+ - 文档强制保存成功: fileId=1996475881870315520
+2025-12-04 15:06:48 [http-nio-8500-exec-6] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/editor/force-save/1996475881870315520],耗时:[31]毫秒
+2025-12-04 15:06:51 [http-nio-8500-exec-8] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[POST /coedit/version/rollback/122352762825478144],参数类型[json],参数:[]
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.c.CoFileVersionController
+ - ========== [版本回滚API] 收到回滚请求 ==========
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.c.CoFileVersionController
+ - [API入口] versionId=122352762825478144
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.c.CoFileVersionController
+ - [用户信息] userId=1862783534683914242, userName=sys_user:1862783534683914242
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - ========== [版本回滚] 开始调试 ==========
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [回滚入口] versionId=122352762825478144, userId=1862783534683914242, userName=sys_user:1862783534683914242
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [目标版本信息] id=122352762825478144, fileId=1996475881870315520, versionNumber=1, fileName=444444444.docx, filePath=./upload/versions/1996475881870315520/1/444444444.docx, fileSize=25343, fileHash=740e992c16bc24da1b43a7f2a34d2b59
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [当前文件信息] id=1996475881870315520, fileName=444444444.docx, filePath=E:\my_project\coEdit\sys_file\1996475881870315520.docx, fileSize=25385, documentKey=1996475881870315520_1_1764831918508
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [版本文件检查] absolutePath=E:\my_project\coEdit\code\coEdit\backend\coEdit\.\upload\versions\1996475881870315520\1\444444444.docx, exists=true, isFile=true, length=25343
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [版本文件哈希] hash=740e992c16bc24da1b43a7f2a34d2b59
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [当前文件检查(复制前)] absolutePath=E:\my_project\coEdit\sys_file\1996475881870315520.docx, exists=true, isFile=true, length=25385
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [当前文件哈希(复制前)] hash=3b39d24187f6c34056603eb3f2290f64
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [开始复制] 源=E:\my_project\coEdit\code\coEdit\backend\coEdit\.\upload\versions\1996475881870315520\1\444444444.docx -> 目标=E:\my_project\coEdit\sys_file\1996475881870315520.docx
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [复制完成] FileUtil.copy() 执行完毕
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [当前文件检查(复制后)] absolutePath=E:\my_project\coEdit\sys_file\1996475881870315520.docx, exists=true, isFile=true, length=25343
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [当前文件哈希(复制后)] hash=740e992c16bc24da1b43a7f2a34d2b59
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [哈希比对] 版本文件=740e992c16bc24da1b43a7f2a34d2b59, 复制后当前文件=740e992c16bc24da1b43a7f2a34d2b59, 匹配=true
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [成功] 文件内容已变化: beforeHash=3b39d24187f6c34056603eb3f2290f64, afterHash=740e992c16bc24da1b43a7f2a34d2b59
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [复制成功] 版本文件复制成功
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [更新documentKey] 旧=1996475881870315520_1_1764831918508, 新=dca066f0-c5ac-4052-8a24-ad0004acf395-1764832011446
+cn.dev33.satoken.session.SaSession@564e3103
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [数据库更新] fileId=1996475881870315520, newSize=25343, newDocumentKey=dca066f0-c5ac-4052-8a24-ad0004acf395-1764832011446, 更新行数=1
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.coedit.service.DocumentService
+ - [DocumentService] 强制更新documentKey缓存: fileId=1996475881870315520, oldKey=1996475881870315520_1_1764831918726, newKey=dca066f0-c5ac-4052-8a24-ad0004acf395-1764832011446
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [缓存同步] 已更新 DocumentService 缓存: fileId=1996475881870315520, newDocumentKey=dca066f0-c5ac-4052-8a24-ad0004acf395-1764832011446
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [版本标记更新] versionId=122352762825478144 已设为当前版本
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [最终验证] 回滚后文件: path=E:\my_project\coEdit\sys_file\1996475881870315520.docx, size=25343, hash=740e992c16bc24da1b43a7f2a34d2b59
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [最终验证] 与版本文件哈希比对: 版本=740e992c16bc24da1b43a7f2a34d2b59, 当前=740e992c16bc24da1b43a7f2a34d2b59, 匹配=true
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - [回滚完成] versionId=122352762825478144, fileId=1996475881870315520, targetVersionNumber=1, userId=1862783534683914242, newDocumentKey=dca066f0-c5ac-4052-8a24-ad0004acf395-1764832011446
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.s.i.CoFileVersionServiceImpl
+ - ========== [版本回滚] 调试结束 ==========
+2025-12-04 15:06:51 [http-nio-8500-exec-8] INFO  c.x.c.c.CoFileVersionController
+ - [API响应] 回滚结果=成功
+2025-12-04 15:06:51 [http-nio-8500-exec-8] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[POST /coedit/version/rollback/122352762825478144],耗时:[72]毫秒
+2025-12-04 15:06:51 [http-nio-8500-exec-1] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/version/list/1996475881870315520],参数类型[param],参数:[{"pageNum":["1"],"pageSize":["20"]}]
+2025-12-04 15:06:51 [http-nio-8500-exec-1] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/version/list/1996475881870315520],耗时:[16]毫秒
+2025-12-04 15:06:51 [http-nio-8500-exec-7] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/editor/config/1996475881870315520],参数类型[param],参数:[{"mode":["edit"]}]
+2025-12-04 15:06:51 [http-nio-8500-exec-7] DEBUG c.x.coedit.service.DocumentService
+ - 文档在内存缓存中找到: fileId=1996475881870315520
+2025-12-04 15:06:51 [http-nio-8500-exec-7] DEBUG c.x.c.controller.EditorController
+ - 使用配置的服务器地址: http://192.168.110.224:8500
+2025-12-04 15:06:51 [http-nio-8500-exec-5] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]开始请求 => URL[GET /coedit/file/1996475881870315520],无参数
+cn.dev33.satoken.session.SaSession@64b0239
+2025-12-04 15:06:51 [http-nio-8500-exec-7] DEBUG c.x.c.service.EditorConfigService
+ - 使用默认权限配置
+2025-12-04 15:06:51 [http-nio-8500-exec-5] INFO  c.x.c.s.i.CoFileAccessRecordServiceImpl
+ - 记录文件访问(Upsert): fileId=1996475881870315520, userId=1862783534683914242, accessType=1, result=2
+2025-12-04 15:06:51 [http-nio-8500-exec-5] INFO  c.x.c.s.i.CoAccessRecordServiceImpl
+ - 记录访问(Upsert): userId=1862783534683914242, targetType=3, targetId=1996475881870315520, workspaceId=2
+2025-12-04 15:06:51 [http-nio-8500-exec-7] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/editor/config/1996475881870315520],耗时:[12]毫秒
+2025-12-04 15:06:51 [http-nio-8500-exec-5] DEBUG c.x.c.s.i.CoAccessRecordServiceImpl
+ - 记录访问结果: result=2
+2025-12-04 15:06:51 [http-nio-8500-exec-5] DEBUG c.x.c.controller.CoFileController
+ - 记录文件访问: fileId=1996475881870315520, userId=1862783534683914242, accessType=1(查看)
+2025-12-04 15:06:51 [http-nio-8500-exec-5] DEBUG c.x.c.w.i.PlusWebInvokeTimeInterceptor
+ - [PLUS]结束请求 => URL[GET /coedit/file/1996475881870315520],耗时:[14]毫秒

@@ -1,0 +1,279 @@
+/* 认证页面样式 - 登录、注册、忘记密码等页面的通用样式 */
+
+/* ==================== 页面容器 ==================== */
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section--content {
+  background: linear-gradient(135deg, #066bed 0%, #6a6ef9 50%, #2563eb 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.section__content {
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==================== 表单容器 ==================== */
+.form {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.form--content {
+  /* 内容表单的特殊样式 */
+}
+
+/* ==================== Logo区域 ==================== */
+.form__logo-wrap {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.form__logo {
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.form__logo:hover {
+  transform: scale(1.05);
+}
+
+.form__logo img {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto;
+}
+
+.form__tagline {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* ==================== 表单组 ==================== */
+.form__group {
+  margin-bottom: 1.5rem;
+}
+
+/* ==================== 输入框 ==================== */
+.form__input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form__input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form__input:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.form__input:focus {
+  border-color: var(--main-color, #00d4ff);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+/* ==================== 按钮 ==================== */
+.form__btn {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--main-color, #00d4ff) 0%, #00b8e6 100%);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.form__btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+}
+
+.form__btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ==================== 文本 ==================== */
+.form__text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.form__text--center {
+  text-align: center;
+  display: block;
+}
+
+/* ==================== 装饰元素 ==================== */
+.block-icon {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  opacity: 0.15;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+.block-icon--purple {
+  background: linear-gradient(135deg, #a034fa 0%, #52297f 100%);
+  top: 10%;
+  right: 5%;
+  animation-delay: 0s;
+}
+
+.block-icon--cyan {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  bottom: 15%;
+  left: 5%;
+  animation-delay: 2s;
+}
+
+.block-icon--orange {
+  background: linear-gradient(135deg, #ff6b35 0%, #e66c12 100%);
+  top: 50%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+  .section__content {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .form {
+    padding: 2rem 1.5rem;
+  }
+
+  .form__logo-wrap {
+    margin-bottom: 2rem;
+  }
+
+  .form__tagline {
+    font-size: 0.85rem;
+  }
+
+  .form__input {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  .form__btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .block-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 1.5rem 1.25rem;
+    border-radius: 12px;
+  }
+
+  .form__logo img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .form__tagline {
+    font-size: 0.8rem;
+  }
+
+  .form__input {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.875rem;
+  }
+
+  .form__btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .block-icon {
+    display: none;
+  }
+}
+
+/* ==================== 深色主题优化 ==================== */
+@media (prefers-color-scheme: dark) {
+  .form {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .form__input {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .form__input:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .form__input:focus {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+
